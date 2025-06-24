@@ -6,7 +6,7 @@ export default function Layout({ children, title = 'PSH Advisory Committee' }) {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <Head>
-        <title>{title} | Washington State PSH Advisory Committee</title>
+        <title>{`${title} | Washington State PSH Advisory Committee`}</title>
         <meta name="description" content="Washington State Permanent Supportive Housing Advisory Committee - Providing guidance and recommendations on permanent supportive housing programs" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />

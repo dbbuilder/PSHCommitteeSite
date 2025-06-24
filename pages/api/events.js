@@ -9,7 +9,8 @@ export default function handler(req, res) {
     case 'GET':
       try {
         const eventsData = fs.readFileSync(eventsPath, 'utf8')
-        let events = JSON.parse(eventsData)
+        const data = JSON.parse(eventsData)
+        let events = data.events || []
         
         // Filter future events by default
         events = events.filter(event => new Date(event.date) >= new Date())
@@ -24,7 +25,8 @@ export default function handler(req, res) {
         
         res.status(200).json(events)
       } catch (error) {
-        res.status(500).json({ error: 'Failed to fetch events' })
+        console.error('Events API error:', error)
+        res.status(500).json({ error: 'Failed to fetch events', details: error.message })
       }
       break
       

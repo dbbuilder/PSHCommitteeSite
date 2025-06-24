@@ -39,8 +39,8 @@ export default function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`hover:text-wa-gray transition-colors duration-200 ${
-                  isActive(item.href) ? 'text-wa-gray border-b-2 border-wa-green' : ''
+                className={`text-white hover:text-wa-green transition-colors duration-200 ${
+                  isActive(item.href) ? 'text-wa-green border-b-2 border-wa-green' : ''
                 }`}
               >
                 {item.name}
@@ -71,7 +71,7 @@ export default function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`px-4 py-3 hover:bg-wa-green transition-colors duration-200 ${
+                  className={`px-4 py-3 text-white hover:bg-wa-green transition-colors duration-200 ${
                     isActive(item.href) ? 'bg-wa-green' : ''
                   }`}
                   onClick={() => setIsMenuOpen(false)}

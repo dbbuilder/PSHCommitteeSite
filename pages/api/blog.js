@@ -9,7 +9,8 @@ export default function handler(req, res) {
     case 'GET':
       try {
         const blogData = fs.readFileSync(blogPath, 'utf8')
-        let posts = JSON.parse(blogData)
+        const data = JSON.parse(blogData)
+        let posts = data.posts || []
         
         // If slug is provided, return single post
         if (query.slug) {
@@ -32,7 +33,8 @@ export default function handler(req, res) {
         
         res.status(200).json(posts)
       } catch (error) {
-        res.status(500).json({ error: 'Failed to fetch blog posts' })
+        console.error('Blog API error:', error)
+        res.status(500).json({ error: 'Failed to fetch blog posts', details: error.message })
       }
       break
       

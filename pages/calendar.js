@@ -1,7 +1,6 @@
 import Layout from '../components/Layout'
 import Calendar from 'react-calendar'
 import { useState, useEffect } from 'react'
-import 'react-calendar/dist/Calendar.css'
 
 export default function CalendarPage() {
   const [selectedDate, setSelectedDate] = useState(new Date())
