@@ -1,0 +1,11 @@
+# Robots.txt for PSH Advisory Committee Website
+
+User-agent: *
+Allow: /
+
+# Disallow admin areas
+Disallow: /admin/
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://pshcommittee.wa.gov/sitemap.xml

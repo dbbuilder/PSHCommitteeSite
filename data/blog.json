@@ -1,22 +1,40 @@
-[
-  {
-    "id": 1,
-    "title": "2024 Annual Report Released",
-    "slug": "2024-annual-report-released",
-    "excerpt": "The PSH Advisory Committee has released its annual report to the Legislature, highlighting key recommendations for enhancing permanent supportive housing coordination.",
-    "content": "# 2024 Annual Report Released\n\nThe Permanent Supportive Housing Advisory Committee is pleased to announce the release of our 2024 Annual Report to the Washington State Legislature.\n\n## Key Highlights\n\n- **Regional Investment Analysis**: Comprehensive review of PSH distribution across Washington State\n- **Quality Assessment Framework**: New strategies for continuous improvement\n- **Stakeholder Engagement**: Enhanced community participation in decision-making\n\n## Priority Recommendations\n\n1. Increase targeted investments in underserved rural communities\n2. Develop capacity-building programs for smaller organizations\n3. Implement standardized quality metrics across all PSH programs\n\n[Download the full report](/documents/2024-annual-report.pdf)",
-    "author": "PSH Advisory Committee",
-    "publishedAt": "2025-02-15",
-    "tags": ["annual report", "recommendations", "legislature"]
-  },
-  {
-    "id": 2,
-    "title": "New Committee Members Appointed",
-    "slug": "new-committee-members-appointed",
-    "excerpt": "The Department of Commerce has appointed three new members to the PSH Advisory Committee, bringing valuable expertise in rural housing development and lived experience.",
-    "content": "# New Committee Members Appointed\n\nWe are excited to welcome three new members to the Permanent Supportive Housing Advisory Committee.\n\n## New Appointments\n\n- **Sarah Johnson**: Rural housing developer with 15 years of experience\n- **Michael Chen**: PSH resident advocate and peer support specialist\n- **Dr. Lisa Martinez**: Behavioral health researcher focusing on housing stability\n\nThese appointments strengthen our committee's commitment to diverse representation and ensure all voices are heard in shaping PSH policy.",
-    "author": "Commerce Communications",
-    "publishedAt": "2025-03-01",
-    "tags": ["committee news", "appointments"]
-  }
-]
+{
+  "posts": [
+    {
+      "id": "welcome-psh-committee",
+      "title": "Welcome to the PSH Advisory Committee",
+      "slug": "welcome-psh-committee",
+      "excerpt": "Learn about our mission to advance permanent supportive housing solutions across Washington State.",
+      "content": "# Welcome to the PSH Advisory Committee\n\nThe Permanent Supportive Housing (PSH) Advisory Committee was established to provide guidance and recommendations to the Washington State Department of Commerce on matters related to permanent supportive housing.\n\n## Our Mission\n\nOur mission is to:\n- Advance evidence-based permanent supportive housing solutions\n- Promote collaboration between service providers, housing developers, and government agencies\n- Ensure equitable access to supportive housing across all communities\n- Monitor and evaluate the effectiveness of PSH programs statewide\n\n## What is Permanent Supportive Housing?\n\nPermanent supportive housing combines affordable housing assistance with voluntary support services to address the needs of chronically homeless people. The services are designed to build independent living and tenancy skills and connect people with community-based health care, treatment, and employment services.\n\n## Get Involved\n\nWe welcome input from community members, service providers, and stakeholders. You can:\n- Attend our public meetings\n- Submit public comments through our contact form\n- Review our resources and reports\n- Subscribe to our newsletter for updates\n\nTogether, we can work towards ensuring everyone in Washington has access to safe, stable housing with the support they need to thrive.",
+      "author": "PSH Committee Staff",
+      "date": "2024-01-15T10:00:00Z",
+      "updatedAt": "2024-01-15T10:00:00Z",
+      "featured": true,
+      "published": true
+    },
+    {
+      "id": "2024-annual-report-preview",
+      "title": "2024 Annual Report: Progress and Priorities",
+      "slug": "2024-annual-report-preview",
+      "excerpt": "A preview of our upcoming annual report highlighting key achievements and future priorities for permanent supportive housing in Washington.",
+      "content": "# 2024 Annual Report: Progress and Priorities\n\nAs we prepare to release our comprehensive 2024 Annual Report, we wanted to share some key highlights and preview the priorities that will guide our work in the coming year.\n\n## Key Achievements in 2024\n\n### Expanded Housing Units\n- Successfully advocated for funding to create 500+ new PSH units statewide\n- Partnered with 15 counties to develop localized PSH strategies\n- Improved coordination between healthcare and housing providers\n\n### Policy Advancements\n- Contributed to legislation streamlining PSH development processes\n- Developed new quality standards for supportive services\n- Created evaluation framework for measuring long-term outcomes\n\n### Community Engagement\n- Hosted 12 regional forums with over 800 participants\n- Launched peer support network for PSH residents\n- Published best practices guide for rural PSH development\n\n## 2025 Priorities\n\nLooking ahead, our committee has identified several critical priorities:\n\n1. **Addressing the Support Services Funding Gap**: While capital funding for PSH has increased, sustainable funding for ongoing support services remains a challenge.\n\n2. **Rural Community Solutions**: Developing innovative models for providing PSH in rural and small communities where traditional approaches may not be feasible.\n\n3. **Workforce Development**: Supporting the recruitment, training, and retention of qualified support services staff.\n\n4. **Data and Evaluation**: Implementing comprehensive data collection systems to better understand outcomes and inform policy decisions.\n\n## Get the Full Report\n\nThe complete 2024 Annual Report will be available on our Resources page starting February 1st. It includes detailed data, case studies, and recommendations for policymakers and practitioners.",
+      "author": "Dr. Sarah Chen, Committee Chair",
+      "date": "2024-01-22T14:30:00Z",
+      "updatedAt": "2024-01-22T14:30:00Z",
+      "featured": false,
+      "published": true
+    },
+    {
+      "id": "best-practices-supportive-services",
+      "title": "Best Practices in Supportive Services: Lessons from the Field",
+      "slug": "best-practices-supportive-services",
+      "excerpt": "Exploring evidence-based approaches to providing supportive services in permanent supportive housing settings.",
+      "content": "# Best Practices in Supportive Services: Lessons from the Field\n\nProviding effective supportive services is crucial to the success of permanent supportive housing. Based on extensive research and input from providers across Washington State, we've identified key best practices that lead to positive outcomes.\n\n## Core Principles\n\n### Housing First Approach\nThe Housing First model, which provides housing without preconditions, continues to show the best outcomes. Key elements include:\n- No sobriety requirements\n- No treatment compliance mandates\n- Focus on housing stability as the foundation for other improvements\n\n### Person-Centered Services\nServices should be:\n- Voluntary and flexible\n- Tailored to individual needs and preferences\n- Culturally responsive and trauma-informed\n- Available but not mandatory\n\n## Essential Service Components\n\n### 1. Case Management\nEffective case management includes:\n- Low staff-to-client ratios (ideally 1:15 or lower)\n- Regular check-ins without being intrusive\n- Connection to community resources\n- Crisis intervention capabilities\n\n### 2. Mental Health and Substance Use Services\n- On-site or easily accessible services\n- Harm reduction approaches\n- Peer support programs\n- Medication management support\n\n### 3. Healthcare Coordination\n- Partnerships with healthcare providers\n- Support for medical appointments\n- Health education and wellness programs\n- Assistance with insurance and benefits\n\n### 4. Life Skills and Community Integration\n- Financial literacy training\n- Cooking and nutrition classes\n- Social activities and community building\n- Employment support services\n\n## Measuring Success\n\nSuccess in PSH should be measured holistically:\n- Housing retention rates\n- Improvements in physical and mental health\n- Increased income and employment\n- Enhanced quality of life\n- Reduced use of crisis services\n\n## Recommendations for Providers\n\n1. **Invest in Staff Training**: Ensure all staff are trained in trauma-informed care, de-escalation, and cultural competency.\n\n2. **Build Strong Partnerships**: Collaborate with healthcare, behavioral health, and employment service providers.\n\n3. **Create Welcoming Environments**: Design spaces that feel like home, not institutions.\n\n4. **Listen to Residents**: Regular feedback from residents should inform service delivery.\n\n5. **Document Outcomes**: Collect data to demonstrate impact and inform continuous improvement.\n\n## Looking Forward\n\nAs we continue to expand PSH across Washington, these best practices will evolve. We encourage providers to share their experiences and innovations with our committee to help build an even stronger evidence base for effective supportive services.",
+      "author": "Michael Rodriguez, Services Subcommittee",
+      "date": "2024-02-05T09:00:00Z",
+      "updatedAt": "2024-02-05T09:00:00Z",
+      "featured": false,
+      "published": true
+    }
+  ]
+}

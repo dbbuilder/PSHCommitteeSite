@@ -34,7 +34,8 @@ const documents = [
     category: "Legislative",
     filename: "Attachment 2_RCW 36.70A.030.pdf",
     size: "156 KB"
-  }  {
+  },
+  {
     id: 5,
     title: "RCW 43.330.425 - Office Duties",
     description: "Legislative requirements for the Office of Apple Health and Homes",

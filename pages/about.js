@@ -4,7 +4,7 @@ import Link from 'next/link'
 export default function About() {
   return (
     <Layout title="About PSH">
-      <div className="container-wrapper py-12">
+      <div className="container mx-auto px-4 py-12">
         <h1>About Permanent Supportive Housing</h1>
         
         {/* Definition Section */}

@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+.next/
+
+# Production
+build/
+dist/
+
+# Data files
+data/
+
+# Lock files
+package-lock.json
+yarn.lock
+
+# Generated files
+public/sw.js
+public/workbox-*.js

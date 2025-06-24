@@ -1,26 +1,52 @@
-[
-  {
-    "id": 1,
-    "title": "Q2 2025 PSH Advisory Committee Meeting",
-    "description": "Quarterly meeting to discuss PSH resource coordination and committee priorities.",
-    "date": "2025-07-15",
-    "time": "1:00 PM - 4:00 PM PST",
-    "location": "Hybrid - Commerce Building, Olympia & Zoom"
-  },
-  {
-    "id": 2,
-    "title": "PSH Stakeholder Forum",
-    "description": "Open forum for community input on permanent supportive housing initiatives.",
-    "date": "2025-08-22",
-    "time": "10:00 AM - 12:00 PM PST",
-    "location": "Virtual - Zoom"
-  },
-  {
-    "id": 3,
-    "title": "Q3 2025 PSH Advisory Committee Meeting",
-    "description": "Quarterly meeting focusing on regional investment strategies and quality assessment.",
-    "date": "2025-10-20",
-    "time": "1:00 PM - 4:00 PM PST",
-    "location": "Hybrid - Commerce Building, Olympia & Zoom"
-  }
-]
+{
+  "events": [
+    {
+      "id": "quarterly-meeting-q1-2024",
+      "title": "Q1 2024 Quarterly Meeting",
+      "date": "2024-03-15T14:00:00Z",
+      "location": "Commerce Building, Conference Room A",
+      "address": "1011 Plum Street SE, Olympia, WA 98501",
+      "description": "Join us for our quarterly meeting where we'll review progress on current initiatives, discuss upcoming legislative priorities, and hear presentations from housing providers. Public comment period included.",
+      "registrationLink": "",
+      "isVirtual": false,
+      "isFeatured": true,
+      "createdAt": "2024-01-10T10:00:00Z"
+    },
+    {
+      "id": "rural-psh-workshop",
+      "title": "Rural PSH Development Workshop",
+      "date": "2024-04-22T10:00:00Z",
+      "location": "Virtual Meeting via Zoom",
+      "address": "",
+      "description": "A virtual workshop focused on developing permanent supportive housing in rural communities. Learn about innovative funding strategies, partnership models, and service delivery approaches tailored for rural contexts. Guest speakers from successful rural PSH projects will share their experiences.",
+      "registrationLink": "https://zoom.us/webinar/register/example",
+      "isVirtual": true,
+      "isFeatured": false,
+      "createdAt": "2024-02-01T09:00:00Z"
+    },
+    {
+      "id": "annual-stakeholder-forum",
+      "title": "2024 Annual Stakeholder Forum",
+      "date": "2024-05-10T09:00:00Z",
+      "location": "Seattle Convention Center",
+      "address": "705 Pike Street, Seattle, WA 98101",
+      "description": "Our largest event of the year bringing together housing providers, government officials, healthcare partners, and community advocates. Full day program includes keynote speakers, breakout sessions, networking opportunities, and the presentation of our annual report. Continental breakfast and lunch provided.",
+      "registrationLink": "https://pshcommittee.wa.gov/events/register/2024-forum",
+      "isVirtual": false,
+      "isFeatured": true,
+      "createdAt": "2024-01-20T11:00:00Z"
+    },
+    {
+      "id": "supportive-services-training",
+      "title": "Trauma-Informed Care Training for PSH Providers",
+      "date": "2024-06-05T13:00:00Z",
+      "location": "Tacoma Community College",
+      "address": "6501 S 19th St, Tacoma, WA 98466",
+      "description": "A hands-on training session for frontline staff working in permanent supportive housing. Topics include trauma-informed approaches, de-escalation techniques, self-care strategies, and building therapeutic relationships. CEUs available for qualified professionals.",
+      "registrationLink": "",
+      "isVirtual": false,
+      "isFeatured": false,
+      "createdAt": "2024-03-01T14:00:00Z"
+    }
+  ]
+}
