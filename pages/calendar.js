@@ -51,7 +51,7 @@ export default function CalendarPage() {
   
   return (
     <Layout title="Meeting Calendar">
-      <div className="container-wrapper py-12">
+      <div className="container mx-auto px-4 py-12">
         <h1>Meeting Calendar</h1>
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
