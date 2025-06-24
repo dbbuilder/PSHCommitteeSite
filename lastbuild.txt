@@ -7,48 +7,25 @@
   - Environments: .env.local
 
  Γ£ô Starting...
- Γ£ô Ready in 3.1s
+ Γ£ô Ready in 2s
  Γùï Compiling / ...
- Γ£ô Compiled / in 4.8s (347 modules)
- GET /_next/static/webpack/2d30b03f77008032.webpack.hot-update.json 404 in 4997ms
- GET / 200 in 321ms
- GET / 200 in 18ms
- GET /.well-known/appspecific/com.chrome.devtools.json 404 in 14ms
- Γ£ô Compiled /api/blog in 422ms (363 modules)
- GET /api/events?limit=3 500 in 511ms
- GET /api/blog?limit=3 500 in 509ms
- GET /android-chrome-192x192.png 404 in 489ms
- GET /api/events?limit=3 500 in 13ms
- GET /api/blog?limit=3 500 in 17ms
- GET / 200 in 62ms
- GET /android-chrome-192x192.png 404 in 14ms
- GET /api/events?limit=3 500 in 7ms
- GET /api/blog?limit=3 500 in 8ms
- GET /api/events?limit=3 500 in 6ms
- GET /api/blog?limit=3 500 in 8ms
- Γ£ô Compiled /contact in 452ms (370 modules)
- GET /api/events?limit=3 500 in 12ms
- GET /api/blog?limit=3 500 in 15ms
- GET /api/events?limit=3 500 in 7ms
- GET /api/blog?limit=3 500 in 7ms
- Γ£ô Compiled /about in 161ms (374 modules)
- Γ£ô Compiled /resources in 134ms (378 modules)
- Γ£ô Compiled /blog in 228ms (382 modules)
- GET /api/blog 500 in 10ms
- GET /api/blog 500 in 15ms
- GET /api/events?limit=3 500 in 6ms
- GET /api/blog?limit=3 500 in 6ms
- GET /api/events?limit=3 500 in 5ms
- GET /api/blog?limit=3 500 in 6ms
- Γùï Compiling /calendar ...
- Γ£ô Compiled /calendar in 704ms (432 modules)
- GET /api/events 500 in 6ms
- GET /api/events 500 in 2ms
- GET / 200 in 54ms
- GET /api/events?limit=3 500 in 9ms
- GET /api/blog?limit=3 500 in 17ms
- GET /android-chrome-192x192.png 404 in 31ms
- GET /api/events?limit=3 500 in 23ms
- GET /api/blog?limit=3 500 in 5ms
- GET /api/blog 500 in 6ms
- GET /api/blog 500 in 8ms
+ Γ£ô Compiled / in 3.3s (348 modules)
+ Γ£ô Compiled in 251ms (348 modules)
+ GET / 200 in 3710ms
+ Γ£ô Compiled /_error in 113ms (350 modules)
+ GET /android-chrome-192x192.png 404 in 149ms
+ Γ£ô Compiled /api/events in 102ms (140 modules)
+ Γ£ô Compiled (142 modules)
+ GET /api/events?limit=3 200 in 225ms
+ GET /api/blog?limit=3 200 in 227ms
+ GET /api/events?limit=3 304 in 5ms
+ GET /api/blog?limit=3 304 in 4ms
+ Γ£ô Compiled /about in 258ms (370 modules)
+ Γ£ô Compiled /calendar in 383ms (418 modules)
+ GET /api/events 200 in 9ms
+ GET /api/events 304 in 3ms
+ Γ£ô Compiled /blog in 162ms (422 modules)
+ GET /api/blog 200 in 16ms
+ GET /api/blog 304 in 5ms
+ Γ£ô Compiled /resources in 107ms (426 modules)
+ Γ£ô Compiled /contact in 161ms (432 modules)
