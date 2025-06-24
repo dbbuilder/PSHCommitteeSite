@@ -186,7 +186,8 @@ export default function Contact() {
                 <div>
                   <h4 className="font-medium">Mailing Address:</h4>
                   <p className="text-gray-600">
-                    Washington State Department of Commerce<br />
+                    PSH Advisory Committee<br />
+                    c/o Washington State Department of Commerce<br />
                     1011 Plum St. SE<br />
                     P.O. Box 42525<br />
                     Olympia, WA 98504-2525
@@ -199,6 +200,15 @@ export default function Contact() {
                     <a href="tel:360-725-4000" className="text-wa-blue hover:text-wa-green">
                       360-725-4000
                     </a> (TTY 360-586-0772)
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="font-medium">Email:</h4>
+                  <p className="text-gray-600">
+                    <a href="mailto:pshadcom@gmail.com" className="text-wa-blue hover:text-wa-green">
+                      pshadcom@gmail.com
+                    </a>
                   </p>
                 </div>
                 

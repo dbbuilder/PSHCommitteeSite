@@ -56,8 +56,14 @@
 - [x] Site manifest for PWA support
 - [x] Custom _document.js with meta tags
 - [x] Environment variables properly configured
+- [x] Update all references to use committee name
+- [x] Add contact email: pshadcom@gmail.com
 
 ## 📋 Remaining Tasks
+
+### Immediate Issues to Fix
+- [ ] Fix 404 error on homepage (likely a Next.js routing issue)
+- [ ] Install ESLint as dev dependency for build process
 
 ### Testing & Quality Assurance
 - [ ] Test all admin functionalities
@@ -89,20 +95,49 @@
 
 ## 🚀 Deployment Checklist
 
-1. [ ] Run `npm run build` to test production build
-2. [ ] Update all placeholder content with real data
-3. [ ] Set production environment variables in Vercel
-4. [ ] Configure Google Maps API key
-5. [ ] Set up reCAPTCHA for production
-6. [ ] Test all forms and functionality
-7. [ ] Deploy to Vercel
-8. [ ] Configure custom domain
-9. [ ] Submit sitemap to search engines
-10. [ ] Monitor for any errors post-deployment
+1. [ ] Fix the homepage 404 error
+2. [ ] Install ESLint: `npm install --save-dev eslint`
+3. [ ] Run `npm run build` to test production build
+4. [ ] Update all placeholder content with real data
+5. [ ] Set production environment variables in Vercel
+6. [ ] Configure Google Maps API key
+7. [ ] Set up reCAPTCHA for production
+8. [ ] Test all forms and functionality
+9. [ ] Deploy to Vercel
+10. [ ] Configure custom domain
+11. [ ] Submit sitemap to search engines
+12. [ ] Monitor for any errors post-deployment
 
 ## 📝 Notes
 
 - Admin credentials for development: username: `admin`, password: `admin123`
+- Committee contact email: pshadcom@gmail.com
 - All sensitive configuration should be in environment variables
 - The site is designed to be fully static with API routes for dynamic features
 - Contact form submissions are stored as JSON files for simplicity
+
+## 🐛 Known Issues
+
+1. **Homepage 404 Error**: The development server is returning 404 for the root path. This needs to be investigated - could be related to:
+   - Next.js routing configuration
+   - Development server cache
+   - Missing index.js export
+   
+2. **ESLint Not Installed**: Build process requires ESLint to be installed as a dev dependency
+
+## 🔧 Quick Fixes
+
+```bash
+# Install ESLint
+cd d:\dev2\pshcommitteesite
+npm install --save-dev eslint
+
+# Clear Next.js cache and rebuild
+rm -rf .next
+npm run dev
+
+# If homepage still shows 404, check:
+# - pages/index.js exports default component
+# - No middleware blocking root path
+# - No conflicting routes
+```

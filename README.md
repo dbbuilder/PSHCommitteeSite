@@ -145,4 +145,4 @@ vercel --prod
 
 ## License
 
-This project is property of the Washington State Department of Commerce.
+This project is property of the PSH Advisory Committee and the Washington State Department of Commerce.

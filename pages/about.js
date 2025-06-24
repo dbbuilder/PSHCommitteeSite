@@ -89,7 +89,7 @@ export default function About() {
           <h2>About the Advisory Committee</h2>
           <div className="bg-white rounded-lg shadow-md p-8">
             <p className="text-lg mb-4">
-              The Washington State Permanent Supportive Housing Advisory Committee was established by Chapter 266, Laws of 2022 (SHB 1724) to provide guidance and recommendations on the administration of permanent supportive housing resources managed by the Department of Commerce.
+              The Washington State Permanent Supportive Housing Advisory Committee was established by Chapter 266, Laws of 2022 (SHB 1724) to provide guidance and recommendations on the administration of permanent supportive housing resources managed by the Washington State Department of Commerce.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
               <div>
