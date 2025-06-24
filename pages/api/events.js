@@ -1,0 +1,35 @@
+import fs from 'fs'
+import path from 'path'
+
+export default function handler(req, res) {
+  const { method, query } = req
+  const eventsPath = path.join(process.cwd(), 'data', 'events.json')
+  
+  switch (method) {
+    case 'GET':
+      try {
+        const eventsData = fs.readFileSync(eventsPath, 'utf8')
+        let events = JSON.parse(eventsData)
+        
+        // Filter future events by default
+        events = events.filter(event => new Date(event.date) >= new Date())
+        
+        // Sort by date
+        events.sort((a, b) => new Date(a.date) - new Date(b.date))
+        
+        // Apply limit if specified
+        if (query.limit) {
+          events = events.slice(0, parseInt(query.limit))
+        }
+        
+        res.status(200).json(events)
+      } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch events' })
+      }
+      break
+      
+    default:
+      res.setHeader('Allow', ['GET'])
+      res.status(405).end(`Method ${method} Not Allowed`)
+  }
+}

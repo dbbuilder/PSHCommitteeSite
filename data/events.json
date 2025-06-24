@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "Q2 2025 PSH Advisory Committee Meeting",
+    "description": "Quarterly meeting to discuss PSH resource coordination and committee priorities.",
+    "date": "2025-07-15",
+    "time": "1:00 PM - 4:00 PM PST",
+    "location": "Hybrid - Commerce Building, Olympia & Zoom"
+  },
+  {
+    "id": 2,
+    "title": "PSH Stakeholder Forum",
+    "description": "Open forum for community input on permanent supportive housing initiatives.",
+    "date": "2025-08-22",
+    "time": "10:00 AM - 12:00 PM PST",
+    "location": "Virtual - Zoom"
+  },
+  {
+    "id": 3,
+    "title": "Q3 2025 PSH Advisory Committee Meeting",
+    "description": "Quarterly meeting focusing on regional investment strategies and quality assessment.",
+    "date": "2025-10-20",
+    "time": "1:00 PM - 4:00 PM PST",
+    "location": "Hybrid - Commerce Building, Olympia & Zoom"
+  }
+]
