@@ -36,7 +36,7 @@ export default function Home() {
     <Layout title="Home">
       {/* Hero Section */}
       <section className="bg-wa-blue text-white py-16">
-        <div className="container-wrapper">
+        <div className="container mx-auto px-4">
           <h1 className="text-5xl font-bold mb-6 text-white">
             Permanent Supportive Housing Advisory Committee
           </h1>
@@ -56,7 +56,7 @@ export default function Home() {
       
       {/* Quick Stats */}
       <section className="py-12 bg-white">
-        <div className="container-wrapper">
+        <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="text-4xl font-bold text-wa-blue mb-2">26</div>
@@ -76,7 +76,7 @@ export default function Home() {
       
       {/* What is PSH Section */}
       <section className="py-12 bg-gray-50">
-        <div className="container-wrapper">
+        <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-8">What is Permanent Supportive Housing?</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div>
@@ -125,7 +125,7 @@ export default function Home() {
       
       {/* Upcoming Events */}
       <section className="py-12 bg-white">
-        <div className="container-wrapper">
+        <div className="container mx-auto px-4">
           <div className="flex justify-between items-center mb-8">
             <h2 className="text-3xl font-bold">Upcoming Events</h2>
             <Link href="/calendar" className="text-wa-blue hover:text-wa-green transition-colors">
@@ -166,7 +166,7 @@ export default function Home() {
       
       {/* Recent Blog Posts */}
       <section className="py-12 bg-gray-50">
-        <div className="container-wrapper">
+        <div className="container mx-auto px-4">
           <div className="flex justify-between items-center mb-8">
             <h2 className="text-3xl font-bold">Recent Updates</h2>
             <Link href="/blog" className="text-wa-blue hover:text-wa-green transition-colors">
