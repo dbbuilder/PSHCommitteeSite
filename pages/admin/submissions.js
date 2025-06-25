@@ -23,7 +23,12 @@ export default function Submissions() {
 
   const checkAuth = async () => {
     try {
-      const response = await fetch('/api/auth/verify');
+      const token = localStorage.getItem('adminToken');
+      const response = await fetch('/api/auth/verify', {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
       if (!response.ok) {
         router.push('/admin/login');
       }
@@ -34,7 +39,12 @@ export default function Submissions() {
 
   const fetchSubmissions = async () => {
     try {
-      const response = await fetch('/api/admin/submissions');
+      const token = localStorage.getItem('adminToken');
+      const response = await fetch('/api/admin/submissions', {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
       const data = await response.json();
       
       if (response.ok) {
@@ -78,9 +88,13 @@ export default function Submissions() {
 
   const toggleRead = async (id) => {
     try {
+      const token = localStorage.getItem('adminToken');
       const response = await fetch(`/api/admin/submissions/${id}`, {
         method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
         body: JSON.stringify({ action: 'toggleRead' })
       });
 
@@ -100,8 +114,12 @@ export default function Submissions() {
     if (!confirm('Are you sure you want to delete this submission?')) return;
 
     try {
+      const token = localStorage.getItem('adminToken');
       const response = await fetch(`/api/admin/submissions/${id}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
       });
 
       if (response.ok) {
