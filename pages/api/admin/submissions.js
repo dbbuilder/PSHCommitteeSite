@@ -1,57 +1,74 @@
-import fs from 'fs';
-import path from 'path';
-import jwt from 'jsonwebtoken';
+// Admin submissions API
+import jwt from 'jsonwebtoken'
 
-const submissionsDir = path.join(process.cwd(), 'data', 'submissions');
+const JWT_SECRET = process.env.JWT_SECRET || 'psh-advisory-committee-secret-key-change-in-production'
 
 export default async function handler(req, res) {
-  // Verify authentication
-  const token = req.headers.authorization?.split(' ')[1];
+  // Set CORS headers
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS')
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
   
-  if (!token) {
-    return res.status(401).json({ error: 'No token provided' });
+  // Handle OPTIONS request for CORS preflight
+  if (req.method === 'OPTIONS') {
+    res.status(200).end()
+    return
+  }
+
+  // Check authentication
+  const authHeader = req.headers.authorization
+  if (!authHeader?.startsWith('Bearer ')) {
+    res.status(401).json({ error: 'No token provided' })
+    return
   }
 
   try {
-    jwt.verify(token, process.env.JWT_SECRET);
+    const token = authHeader.substring(7)
+    jwt.verify(token, JWT_SECRET)
   } catch (error) {
-    return res.status(401).json({ error: 'Invalid token' });
+    res.status(401).json({ error: 'Invalid token' })
+    return
   }
 
   if (req.method === 'GET') {
     try {
+      // Import fs here to avoid issues
+      const fs = require('fs')
+      const path = require('path')
+      const submissionsDir = path.join(process.cwd(), 'data', 'submissions')
+
       // Ensure submissions directory exists
       if (!fs.existsSync(submissionsDir)) {
-        fs.mkdirSync(submissionsDir, { recursive: true });
+        fs.mkdirSync(submissionsDir, { recursive: true })
       }
 
       // Read all submission files
-      const files = fs.readdirSync(submissionsDir);
-      const submissions = [];
+      const files = fs.readdirSync(submissionsDir)
+      const submissions = []
 
       for (const file of files) {
         if (file.endsWith('.json')) {
-          const filePath = path.join(submissionsDir, file);
-          const content = fs.readFileSync(filePath, 'utf8');
-          const submission = JSON.parse(content);
+          const filePath = path.join(submissionsDir, file)
+          const content = fs.readFileSync(filePath, 'utf8')
+          const submission = JSON.parse(content)
           
           // Add metadata from filename
-          submission.id = file.replace('.json', '');
+          submission.id = file.replace('.json', '')
           
           // Check if submission has been read (by checking for .read file)
-          const readFilePath = path.join(submissionsDir, `${submission.id}.read`);
-          submission.read = fs.existsSync(readFilePath);
+          const readFilePath = path.join(submissionsDir, `${submission.id}.read`)
+          submission.read = fs.existsSync(readFilePath)
           
-          submissions.push(submission);
+          submissions.push(submission)
         }
       }
 
-      return res.status(200).json({ submissions });
+      return res.status(200).json({ submissions })
     } catch (error) {
-      console.error('Error reading submissions:', error);
-      return res.status(500).json({ error: 'Failed to read submissions' });
+      console.error('Error reading submissions:', error)
+      return res.status(500).json({ error: 'Failed to read submissions' })
     }
   }
 
-  return res.status(405).json({ error: 'Method not allowed' });
+  return res.status(405).json({ error: 'Method not allowed' })
 }
