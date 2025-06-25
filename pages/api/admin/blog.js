@@ -1,7 +1,17 @@
-// Blog API - Vercel Compatible
+// Blog API - Vercel Blob Storage Compatible
 import jwt from 'jsonwebtoken'
+import { 
+  getAllBlogPosts, 
+  addBlogPost, 
+  updateBlogPost, 
+  deleteBlogPost,
+  initializeBlogMetadata 
+} from '../../../lib/blogBlobStorage'
 
 const JWT_SECRET = process.env.JWT_SECRET || 'psh-advisory-committee-secret-key-change-in-production'
+
+// Initialize blob storage on first request
+let initialized = false;
 
 export default async function handler(req, res) {
   // Set CORS headers
@@ -30,16 +40,15 @@ export default async function handler(req, res) {
     return
   }
 
-  // Import fs here to avoid issues
-  const fs = require('fs')
-  const path = require('path')
-  const blogPath = path.join(process.cwd(), 'data', 'blog.json')
+  // Initialize blob storage if needed
+  if (!initialized) {
+    await initializeBlogMetadata();
+    initialized = true;
+  }
 
   try {
     if (req.method === 'GET') {
-      const data = fs.readFileSync(blogPath, 'utf8')
-      const parsed = JSON.parse(data)
-      const posts = parsed.posts || []
+      const posts = await getAllBlogPosts();
       res.status(200).json({ success: true, data: posts })
       return
     }
@@ -52,27 +61,55 @@ export default async function handler(req, res) {
         return
       }
       
-      const data = fs.readFileSync(blogPath, 'utf8')
-      const parsed = JSON.parse(data)
-      const posts = parsed.posts || []
-      
-      const newPost = {
-        id: Date.now().toString(),
+      const newPost = await addBlogPost({
         title,
         slug: title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
         excerpt: excerpt || content.substring(0, 150) + '...',
         content,
         author: 'admin',
-        date: new Date().toISOString(),
-        publishedAt: new Date().toISOString().split('T')[0],
         tags: tags || [],
         isDraft: isDraft || false
-      }
-      
-      posts.push(newPost)
-      fs.writeFileSync(blogPath, JSON.stringify({ posts }, null, 2))
+      });
       
       res.status(201).json({ success: true, data: newPost })
+      return
+    }
+
+    if (req.method === 'PUT') {
+      const { id, ...updates } = req.body
+      
+      if (!id) {
+        res.status(400).json({ success: false, message: 'Post ID is required' })
+        return
+      }
+      
+      const updatedPost = await updateBlogPost(id, updates);
+      
+      if (!updatedPost) {
+        res.status(404).json({ success: false, message: 'Post not found' })
+        return
+      }
+      
+      res.status(200).json({ success: true, data: updatedPost })
+      return
+    }
+
+    if (req.method === 'DELETE') {
+      const { id } = req.body
+      
+      if (!id) {
+        res.status(400).json({ success: false, message: 'Post ID is required' })
+        return
+      }
+      
+      const deleted = await deleteBlogPost(id);
+      
+      if (!deleted) {
+        res.status(404).json({ success: false, message: 'Post not found' })
+        return
+      }
+      
+      res.status(200).json({ success: true, message: 'Post deleted successfully' })
       return
     }
 

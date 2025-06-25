@@ -1,7 +1,14 @@
-import fs from 'fs'
-import path from 'path'
+// Public Blog API - Vercel Blob Storage Compatible
+import { 
+  getAllBlogPosts, 
+  getBlogPostBySlug,
+  initializeBlogMetadata 
+} from '../../lib/blogBlobStorage'
 
-export default function handler(req, res) {
+// Initialize blob storage on first request
+let initialized = false;
+
+export default async function handler(req, res) {
   // Set CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*')
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS')
@@ -13,26 +20,33 @@ export default function handler(req, res) {
     return
   }
 
+  // Initialize blob storage if needed
+  if (!initialized) {
+    await initializeBlogMetadata();
+    initialized = true;
+  }
+
   const { method, query } = req
-  const blogPath = path.join(process.cwd(), 'data', 'blog.json')
   
   switch (method) {
     case 'GET':
       try {
-        const blogData = fs.readFileSync(blogPath, 'utf8')
-        const data = JSON.parse(blogData)
-        let posts = data.posts || []
-        
         // If slug is provided, return single post
         if (query.slug) {
-          const post = posts.find(p => p.slug === query.slug)
-          if (post) {
+          const post = await getBlogPostBySlug(query.slug);
+          if (post && !post.isDraft) {
             res.status(200).json(post)
           } else {
             res.status(404).json({ error: 'Post not found' })
           }
           return
         }
+        
+        // Get all posts
+        let posts = await getAllBlogPosts();
+        
+        // Filter out drafts for public API
+        posts = posts.filter(post => !post.isDraft);
         
         // Sort by date (newest first)
         posts.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))

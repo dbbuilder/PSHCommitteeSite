@@ -1,163 +1,230 @@
-# PSH Advisory Committee Website - Project Context for Next Session
+# PSH Advisory Committee Website - Project Context
+
+## 🚨 CRITICAL PRIORITY - Data Persistence Crisis
+
+**THE PROBLEM**: All content (blog posts, events, form submissions) is currently stored in local JSON files that get WIPED every time the site is deployed to Vercel. This means:
+- Admin creates blog post → deploys site → blog post is GONE
+- User submits contact form → deploy happens → submission is LOST
+- Events added to calendar → deploy → events DISAPPEAR
+
+**THE SOLUTION**: Migrate all data storage to Vercel Blob Storage (like we did for documents).
 
 ## Project Overview
-- **Project Name**: PSH Advisory Committee Website
-- **Location**: `d:\dev2\pshcommitteesite\`
-- **Status**: 95% Complete - Website functionality complete, needs deployment fixes
-- **Tech Stack**: Next.js 14.2.3, React 18.3.1, TailwindCSS, JWT Auth
-- **Contact Email**: pshadcom@gmail.com
 
-## Current Issues Requiring Immediate Attention
+**Name**: PSH Advisory Committee Website  
+**URL**: https://psh-committee-site.vercel.app  
+**Repository**: https://github.com/dbbuilder/PSHCommitteeSite  
+**Purpose**: Official website for Washington State Permanent Supportive Housing Advisory Committee  
+**Stack**: Next.js 14.2.3, React 18.3.1, Tailwind CSS, Vercel hosting  
 
-### 1. Homepage 404 Error (CRITICAL)
-```
-Failed to load resource: the server responded with a status of 404 (Not Found)
-GET http://localhost:3000/ 404 (Not Found)
-```
-**Possible causes**:
-- Next.js routing issue
-- Missing or incorrect export in pages/index.js
-- Development server cache
-- Port conflict or server configuration
+## File Structure & Key Paths
 
-### 2. Build Process Error
 ```
-ESLint must be installed in order to run during builds: npm install --save-dev eslint
-```
-**Solution**: Run `npm install --save-dev eslint`
-
-## Project Structure
-```
-pshcommitteesite/
-├── components/          # Layout, Header, Footer (UPDATED with pshadcom@gmail.com)
-├── data/               # JSON storage for blog, events
-│   └── submissions/    # Contact form submissions (with sample)
-├── docs/source/        # Original PDF documents
-├── lib/                # Auth utilities, middleware
-├── pages/              
-│   ├── admin/          # Admin pages (ALL COMPLETE)
-│   │   ├── blog/
-│   │   │   └── edit/[id].js  # NEW - Blog edit page
-│   │   ├── events/
-│   │   │   └── edit/[id].js  # NEW - Event edit page
-│   │   ├── submissions.js     # NEW - Submissions viewer
-│   │   └── submissions/[id].js # NEW - Individual submission
-│   ├── api/            # API routes
-│   │   └── admin/
-│   │       └── submissions/   # NEW - Submission APIs
-│   ├── blog/           # Public blog pages
-│   └── [other pages]   # Public pages (contact UPDATED)
-├── public/             
-│   ├── documents/      # PDF downloads
-│   ├── robots.txt      # NEW - SEO file
-│   └── site.webmanifest # NEW - PWA manifest
-├── scripts/            # Utility scripts
-├── styles/             # Global CSS
-├── .env.local          # Environment variables (CONFIGURED)
-├── .eslintrc.json      # NEW - ESLint config
-├── .prettierrc         # NEW - Prettier config
-└── TODO.md             # UPDATED with current status
+d:\dev2\pshcommitteesite\
+├── pages/
+│   ├── api/
+│   │   ├── admin/          # Admin API endpoints (need blob migration)
+│   │   │   ├── blog.js     # Blog CRUD - uses local JSON ❌
+│   │   │   ├── events.js   # Events CRUD - uses local JSON ❌
+│   │   │   ├── submissions.js # Form submissions - uses local JSON ❌
+│   │   │   ├── documents.js # Documents CRUD - uses blob storage ✅
+│   │   │   └── upload.js   # File upload - uses blob storage ✅
+│   │   ├── blog.js         # Public blog API
+│   │   ├── events.js       # Public events API
+│   │   ├── documents.js    # Public documents API
+│   │   └── contact.js      # Contact form submission
+│   ├── admin/              # Admin pages
+│   ├── blog/               # Blog pages
+│   └── [other pages]
+├── lib/
+│   ├── blobStorage.js      # ✅ Blob storage for documents (WORKING)
+│   ├── documentsStore.js   # In-memory fallback
+│   └── auth.js             # Authentication utilities
+├── data/                   # ❌ LOCAL JSON FILES (PROBLEM)
+│   ├── blog.json          # Blog posts - gets wiped on deploy
+│   ├── events.json        # Events - gets wiped on deploy
+│   └── submissions/       # Form submissions - gets wiped on deploy
+├── components/             # React components
+├── public/
+│   └── documents/         # Static PDF files
+└── scripts/               # Utility scripts
 ```
 
-## Authentication & Access
-- **Admin URL**: http://localhost:3000/admin/login
-- **Username**: admin
-- **Password**: admin123
-- **Password Hash**: $2a$10$jJ1cEK.rhssUnFSIvYGld.TmDcH6d/wxIMNtTRlI3jOWYfbXPIfvu
+## Current Storage Status
 
-## Key Files Modified in Last Session
-1. `components/Footer.js` - Updated with committee name and pshadcom@gmail.com
-2. `pages/contact.js` - Added email contact, updated organization name
-3. `pages/about.js` - Updated Department of Commerce references
-4. `data/blog.json` - Updated content references
-5. `README.md` - Updated license section
-6. All admin features completed (submissions viewer, edit pages)
+| Feature | Storage Method | Persists? | Priority |
+|---------|---------------|-----------|----------|
+| Documents | ✅ Vercel Blob | YES | DONE |
+| Blog Posts | ❌ Local JSON | NO | 1 |
+| Events | ❌ Local JSON | NO | 2 |
+| Submissions | ❌ Local JSON | NO | 3 |
 
-## Environment Variables (.env.local)
-```
-ADMIN_USERNAME=admin
-ADMIN_PASSWORD_HASH=$2a$10$jJ1cEK.rhssUnFSIvYGld.TmDcH6d/wxIMNtTRlI3jOWYfbXPIfvu
-JWT_SECRET=development-secret-key-change-in-production
-EMAIL_HOST=smtp.gmail.com
-EMAIL_PORT=587
-EMAIL_USER=test@example.com
-EMAIL_PASSWORD=test-password
-EMAIL_FROM=noreply@pshcommittee.wa.gov
-EMAIL_TO=pshadcom@gmail.com
-NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=placeholder-google-maps-key
-NEXT_PUBLIC_RECAPTCHA_SITE_KEY=placeholder-recaptcha-site-key
-RECAPTCHA_SECRET_KEY=placeholder-recaptcha-secret-key
-NEXT_PUBLIC_SITE_URL=http://localhost:3000
-NEXT_PUBLIC_SITE_NAME=PSH Advisory Committee
+## Development Setup
+
+### Local Development
+```bash
+# Install dependencies
+npm install
+
+# Run on port 12500 (configured to avoid conflicts)
+npm run dev
+
+# Or use Windows helper
+dev.bat
 ```
 
-## Git Status
-- Repository initialized with 4 commits
-- Latest commit: "Complete admin features and add polish"
-- All features implemented and committed
+### Environment Variables
+Create `.env.local`:
+```
+JWT_SECRET=your-secret-key-here
+ADMIN_PASSWORD=PSH@dm1n!
+BLOB_READ_WRITE_TOKEN=[GET FROM VERCEL DASHBOARD]
+```
 
-## Required Tools for Next Session
-1. **sequential-thinking**: For debugging the 404 issue
-2. **desktop-commander**: For file operations and running commands
-3. **playwright**: For testing the website
-4. **artifacts**: For any code fixes
-5. **web_search**: For troubleshooting Next.js issues if needed
+### Vercel Blob Storage Setup
+1. Go to Vercel Dashboard → Storage → Create Blob Store
+2. Copy the `BLOB_READ_WRITE_TOKEN`
+3. Add to Environment Variables in Vercel settings
 
-## Next Steps Priority Order
-1. **Fix Homepage 404 Error**:
-   ```bash
-   cd d:\dev2\pshcommitteesite
-   # Check if server is running
-   # Clear .next cache
-   rm -rf .next
-   # Restart dev server
-   npm run dev
-   ```
+## Tools & Commands
 
-2. **Install ESLint**:
-   ```bash
-   npm install --save-dev eslint
-   ```
+### Desktop Commander (DC)
+```bash
+# File operations
+DC: read_file, write_file, edit_block, search_code
+DC: list_directory, create_directory, move_file
 
-3. **Test Production Build**:
-   ```bash
-   npm run build
-   npm start
-   ```
+# Process management
+DC: execute_command, read_output, force_terminate
 
-4. **Deploy to Vercel**:
-   - Update environment variables
-   - Connect GitHub repository
-   - Configure custom domain
-   - Set up production API keys
+# Development
+DC: npm run dev    # Start dev server on port 12500
+DC: npm run build  # Build for production
+DC: npm test       # Run Playwright tests
+```
 
-## Testing Checklist
-- [ ] Homepage loads correctly
-- [ ] All navigation links work
-- [ ] Admin login functions
-- [ ] Blog CRUD operations
-- [ ] Event CRUD operations  
-- [ ] Contact form submission
-- [ ] Submission viewer works
-- [ ] Mobile responsive design
-- [ ] Google Maps loads (need real API key)
+### Testing
+```bash
+# Run tests
+npm run test
 
-## Production Requirements
-- Real Google Maps API key
-- Real reCAPTCHA keys
-- SMTP configuration for emails
-- Secure JWT secret
-- Custom domain setup
-- SSL certificate
-- Analytics setup
+# Test specific file
+npx playwright test tests/main-site/navigation.test.js
 
-## Contact Information
-- **Committee Email**: pshadcom@gmail.com
-- **Physical Address**: 
-  PSH Advisory Committee
-  c/o Washington State Department of Commerce
-  1011 Plum St. SE
-  P.O. Box 42525
-  Olympia, WA 98504-2525
+# Open Playwright UI
+npx playwright test --ui
+```
 
-This context file contains everything needed to continue the project in the next session.
+### Git Commands
+```bash
+# Commit and push
+git add -A && git commit -m "message" && git push
+```
+
+## API Endpoints Reference
+
+### Admin APIs (Require JWT Auth)
+- `POST /api/admin/blog` - Create blog post
+- `PUT /api/admin/blog` - Update blog post
+- `DELETE /api/admin/blog` - Delete blog post
+- `GET /api/admin/blog` - List all posts
+
+- `POST /api/admin/events` - Create event
+- `PUT /api/admin/events` - Update event
+- `DELETE /api/admin/events` - Delete event
+- `GET /api/admin/events` - List all events
+
+- `GET /api/admin/submissions` - List submissions
+- `GET /api/admin/submissions/[id]` - Get submission
+
+### Public APIs
+- `GET /api/blog` - Public blog posts
+- `GET /api/events` - Public events
+- `GET /api/documents` - Public documents
+- `POST /api/contact` - Submit contact form
+
+## Critical Migration Tasks (In Priority Order)
+
+### 1. Blog Posts Migration (2-3 hours)
+**File**: `/pages/api/admin/blog.js`
+- Currently reads/writes to `/data/blog.json`
+- Need to create `/lib/blogBlobStorage.js`
+- Copy pattern from `/lib/blobStorage.js`
+- Update both admin and public APIs
+
+### 2. Events Migration (2-3 hours)
+**File**: `/pages/api/admin/events.js`
+- Currently reads/writes to `/data/events.json`
+- Need to create `/lib/eventsBlobStorage.js`
+- Update calendar page to use blob data
+
+### 3. Submissions Migration (3-4 hours)
+**Files**: `/pages/api/contact.js`, `/pages/api/admin/submissions.js`
+- Currently saves to `/data/submissions/[id].json`
+- Need to create `/lib/submissionsBlobStorage.js`
+- Handle file attachments properly
+
+## Success Pattern (From Documents)
+
+The documents feature already uses blob storage successfully:
+1. `/lib/blobStorage.js` - Handles all blob operations
+2. Falls back to in-memory storage if no token
+3. Maintains backward compatibility
+4. Same API interface
+
+**Copy this pattern for blog, events, and submissions!**
+
+## Testing After Migration
+
+1. Create content (blog post, event, submission)
+2. Deploy to Vercel
+3. Verify content still exists after deployment
+4. Test with and without blob token
+
+## Known Issues to Fix
+
+1. **Data Persistence**: Critical - all content lost on deploy
+2. **Upload Errors**: Fixed for documents, need same fix for other uploads
+3. **Safari Mobile**: Menu doesn't close after navigation
+4. **Edge Mobile**: Hamburger button visibility
+5. **Firefox**: Performance timeouts in tests
+
+## Deployment Process
+
+```bash
+# 1. Test locally
+npm run dev
+
+# 2. Build
+npm run build
+
+# 3. Commit and push
+git add -A && git commit -m "description" && git push
+
+# 4. Vercel auto-deploys from GitHub
+```
+
+## Support Documentation
+
+- `TODO.md` - Current task list with priorities
+- `REQUIREMENTS.md` - Project requirements
+- `API_FIXES.md` - API troubleshooting
+- `VERCEL_BLOB_SETUP.md` - Blob storage setup guide
+- `PORT_CONFIGURATION.md` - Development port setup
+- `TEST_PLAN.md` - Testing strategy
+
+## Next Steps for Developer
+
+1. **Read TODO.md** - Understand critical blob storage migration
+2. **Set up Vercel Blob** - Get token from Vercel dashboard
+3. **Start with Blog migration** - Highest visibility feature
+4. **Test thoroughly** - Ensure no data loss
+5. **Document changes** - Update this context as you go
+
+## Contact & Resources
+
+- **Vercel Dashboard**: https://vercel.com/your-account/psh-committee-site
+- **Blob Storage Docs**: https://vercel.com/docs/storage/vercel-blob
+- **Next.js Docs**: https://nextjs.org/docs
+
+**Remember**: The site is currently LOSING ALL DATA on every deployment. This is the #1 priority to fix!

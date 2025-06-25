@@ -1,7 +1,13 @@
-import fs from 'fs'
-import path from 'path'
+// Public Events API - Vercel Blob Storage Compatible
+import { 
+  getAllEvents, 
+  initializeEventsMetadata 
+} from '../../lib/eventsBlobStorage'
 
-export default function handler(req, res) {
+// Initialize blob storage on first request
+let initialized = false;
+
+export default async function handler(req, res) {
   // Set CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*')
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS')
@@ -13,18 +19,23 @@ export default function handler(req, res) {
     return
   }
 
+  // Initialize blob storage if needed
+  if (!initialized) {
+    await initializeEventsMetadata();
+    initialized = true;
+  }
+
   const { method, query } = req
-  const eventsPath = path.join(process.cwd(), 'data', 'events.json')
   
   switch (method) {
     case 'GET':
       try {
-        const eventsData = fs.readFileSync(eventsPath, 'utf8')
-        const data = JSON.parse(eventsData)
-        let events = data.events || []
+        let events = await getAllEvents();
         
-        // Filter future events by default
-        events = events.filter(event => new Date(event.date) >= new Date())
+        // Filter future events by default unless includePast is specified
+        if (!query.includePast) {
+          events = events.filter(event => new Date(event.date) >= new Date())
+        }
         
         // Sort by date
         events.sort((a, b) => new Date(a.date) - new Date(b.date))

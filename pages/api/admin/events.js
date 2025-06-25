@@ -1,7 +1,17 @@
-// Events API - Vercel Compatible
+// Events API - Vercel Blob Storage Compatible
 import jwt from 'jsonwebtoken'
+import { 
+  getAllEvents, 
+  addEvent, 
+  updateEvent, 
+  deleteEvent,
+  initializeEventsMetadata 
+} from '../../../lib/eventsBlobStorage'
 
 const JWT_SECRET = process.env.JWT_SECRET || 'psh-advisory-committee-secret-key-change-in-production'
+
+// Initialize blob storage on first request
+let initialized = false;
 
 export default async function handler(req, res) {
   // Set CORS headers
@@ -30,48 +40,76 @@ export default async function handler(req, res) {
     return
   }
 
-  // Import fs here to avoid issues
-  const fs = require('fs')
-  const path = require('path')
-  const eventsPath = path.join(process.cwd(), 'data', 'events.json')
+  // Initialize blob storage if needed
+  if (!initialized) {
+    await initializeEventsMetadata();
+    initialized = true;
+  }
 
   try {
     if (req.method === 'GET') {
-      const data = fs.readFileSync(eventsPath, 'utf8')
-      const parsed = JSON.parse(data)
-      const events = parsed.events || []
+      const events = await getAllEvents();
       res.status(200).json({ success: true, data: events })
       return
     }
 
     if (req.method === 'POST') {
-      const { title, description, date, time, location } = req.body
+      const { title, description, date, time, location, address, registrationLink } = req.body
       
       if (!title || !date || !time || !location) {
         res.status(400).json({ success: false, message: 'Title, date, time, and location are required' })
         return
       }
       
-      const data = fs.readFileSync(eventsPath, 'utf8')
-      const parsed = JSON.parse(data)
-      const events = parsed.events || []
-      
-      const newEvent = {
-        id: Date.now().toString(),
+      const newEvent = await addEvent({
         title,
         description: description || '',
         date,
         time,
         location,
-        address: '',
-        registrationLink: '',
-        createdAt: new Date().toISOString()
-      }
-      
-      events.push(newEvent)
-      fs.writeFileSync(eventsPath, JSON.stringify({ events }, null, 2))
+        address: address || '',
+        registrationLink: registrationLink || ''
+      });
       
       res.status(201).json({ success: true, data: newEvent })
+      return
+    }
+
+    if (req.method === 'PUT') {
+      const { id, ...updates } = req.body
+      
+      if (!id) {
+        res.status(400).json({ success: false, message: 'Event ID is required' })
+        return
+      }
+      
+      const updatedEvent = await updateEvent(id, updates);
+      
+      if (!updatedEvent) {
+        res.status(404).json({ success: false, message: 'Event not found' })
+        return
+      }
+      
+      res.status(200).json({ success: true, data: updatedEvent })
+      return
+    }
+
+    if (req.method === 'DELETE') {
+      const { id } = req.body
+      
+      if (!id) {
+        res.status(400).json({ success: false, message: 'Event ID is required' })
+        return
+      }
+      
+      const deleted = await deleteEvent(id);
+      
+      if (!deleted) {
+        res.status(404).json({ success: false, message: 'Event not found' })
+        return
+      }
+      
+      res.status(200).json({ success: true, message: 'Event deleted successfully' })
       return
     }
 

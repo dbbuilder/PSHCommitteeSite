@@ -1,12 +1,15 @@
-// API endpoint for contact form submissions
-import fs from 'fs'
-import path from 'path'
+// API endpoint for contact form submissions - Vercel Blob Storage Compatible
 import { withCORS } from '../../lib/middleware'
-
-const submissionsDir = path.join(process.cwd(), 'data', 'submissions')
+import { 
+  addSubmission, 
+  initializeSubmissionsMetadata 
+} from '../../lib/submissionsBlobStorage'
 
 // Rate limiting - Simple in-memory store (in production, use Redis)
 const rateLimitStore = new Map()
+
+// Initialize blob storage on first request
+let initialized = false;
 
 // Check rate limit
 function checkRateLimit(ip) {
@@ -30,25 +33,11 @@ function checkRateLimit(ip) {
   
   return true
 }
+
 // Validate email format
 function isValidEmail(email) {
   const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
   return emailRegex.test(email)
-}
-
-// Save submission to file
-function saveSubmission(submission) {
-  try {
-    const timestamp = new Date().toISOString().replace(/[:.]/g, '-')
-    const filename = `submission-${timestamp}.json`
-    const filepath = path.join(submissionsDir, filename)
-    
-    fs.writeFileSync(filepath, JSON.stringify(submission, null, 2))
-    return true
-  } catch (error) {
-    console.error('Error saving submission:', error)
-    return false
-  }
 }
 
 async function handler(req, res) {
@@ -59,6 +48,12 @@ async function handler(req, res) {
     })
   }
 
+  // Initialize blob storage if needed
+  if (!initialized) {
+    await initializeSubmissionsMetadata();
+    initialized = true;
+  }
+
   try {
     const { name, email, organization, interest, message, honeypot } = req.body
     
@@ -67,7 +62,8 @@ async function handler(req, res) {
       console.log('Honeypot triggered')
       // Still return success to not reveal to spammers
       return res.status(200).json({ success: true })
-    }    
+    }
+    
     // Get client IP for rate limiting
     const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress || '127.0.0.1'
     
@@ -115,26 +111,15 @@ async function handler(req, res) {
       return res.status(200).json({ success: true })
     }
     
-    // Create submission object
-    const submission = {
-      id: Date.now(),
+    // Save submission using blob storage
+    const submission = await addSubmission({
       name: name.trim(),
       email: email.trim(),
       organization: organization?.trim() || '',
       interest: interest || '',
       message: message.trim(),
-      submittedAt: new Date().toISOString(),
-      ip: ip,
-      status: 'new'
-    }
-    
-    // Save submission
-    if (!saveSubmission(submission)) {
-      return res.status(500).json({
-        success: false,
-        message: 'Failed to save submission. Please try again.'
-      })
-    }
+      ip: ip
+    });
     
     // TODO: Send email notification to administrators
     // This would be implemented with a service like SendGrid or AWS SES

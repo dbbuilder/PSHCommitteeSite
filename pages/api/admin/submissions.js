@@ -1,12 +1,22 @@
-// Admin submissions API
+// Admin submissions API - Vercel Blob Storage Compatible
 import jwt from 'jsonwebtoken'
+import { 
+  getAllSubmissions, 
+  getSubmissionById,
+  markSubmissionAsRead,
+  deleteSubmission,
+  initializeSubmissionsMetadata 
+} from '../../../lib/submissionsBlobStorage'
 
 const JWT_SECRET = process.env.JWT_SECRET || 'psh-advisory-committee-secret-key-change-in-production'
+
+// Initialize blob storage on first request
+let initialized = false;
 
 export default async function handler(req, res) {
   // Set CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*')
-  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS')
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE, OPTIONS')
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
   
   // Handle OPTIONS request for CORS preflight
@@ -30,43 +40,67 @@ export default async function handler(req, res) {
     return
   }
 
+  // Initialize blob storage if needed
+  if (!initialized) {
+    await initializeSubmissionsMetadata();
+    initialized = true;
+  }
+
   if (req.method === 'GET') {
     try {
-      // Import fs here to avoid issues
-      const fs = require('fs')
-      const path = require('path')
-      const submissionsDir = path.join(process.cwd(), 'data', 'submissions')
-
-      // Ensure submissions directory exists
-      if (!fs.existsSync(submissionsDir)) {
-        fs.mkdirSync(submissionsDir, { recursive: true })
-      }
-
-      // Read all submission files
-      const files = fs.readdirSync(submissionsDir)
-      const submissions = []
-
-      for (const file of files) {
-        if (file.endsWith('.json')) {
-          const filePath = path.join(submissionsDir, file)
-          const content = fs.readFileSync(filePath, 'utf8')
-          const submission = JSON.parse(content)
-          
-          // Add metadata from filename
-          submission.id = file.replace('.json', '')
-          
-          // Check if submission has been read (by checking for .read file)
-          const readFilePath = path.join(submissionsDir, `${submission.id}.read`)
-          submission.read = fs.existsSync(readFilePath)
-          
-          submissions.push(submission)
-        }
-      }
-
+      const submissions = await getAllSubmissions();
+      
+      // Sort by date (newest first)
+      submissions.sort((a, b) => new Date(b.submittedAt) - new Date(a.submittedAt));
+      
       return res.status(200).json({ submissions })
     } catch (error) {
       console.error('Error reading submissions:', error)
       return res.status(500).json({ error: 'Failed to read submissions' })
+    }
+  }
+
+  if (req.method === 'POST') {
+    try {
+      const { id, action } = req.body
+      
+      if (!id || !action) {
+        return res.status(400).json({ error: 'ID and action are required' })
+      }
+      
+      if (action === 'markAsRead') {
+        const updatedSubmission = await markSubmissionAsRead(id);
+        if (!updatedSubmission) {
+          return res.status(404).json({ error: 'Submission not found' })
+        }
+        return res.status(200).json({ success: true, submission: updatedSubmission })
+      }
+      
+      return res.status(400).json({ error: 'Invalid action' })
+    } catch (error) {
+      console.error('Error updating submission:', error)
+      return res.status(500).json({ error: 'Failed to update submission' })
+    }
+  }
+
+  if (req.method === 'DELETE') {
+    try {
+      const { id } = req.body
+      
+      if (!id) {
+        return res.status(400).json({ error: 'Submission ID is required' })
+      }
+      
+      const deleted = await deleteSubmission(id);
+      
+      if (!deleted) {
+        return res.status(404).json({ error: 'Submission not found' })
+      }
+      
+      return res.status(200).json({ success: true, message: 'Submission deleted successfully' })
+    } catch (error) {
+      console.error('Error deleting submission:', error)
+      return res.status(500).json({ error: 'Failed to delete submission' })
     }
   }
 

@@ -1,7 +1,17 @@
-// Admin submission detail API
+// Admin submission detail API - Vercel Blob Storage Compatible
 import jwt from 'jsonwebtoken'
+import { 
+  getSubmissionById,
+  markSubmissionAsRead,
+  updateSubmission,
+  deleteSubmission,
+  initializeSubmissionsMetadata 
+} from '../../../../lib/submissionsBlobStorage'
 
 const JWT_SECRET = process.env.JWT_SECRET || 'psh-advisory-committee-secret-key-change-in-production'
+
+// Initialize blob storage on first request
+let initialized = false;
 
 export default async function handler(req, res) {
   // Set CORS headers
@@ -30,27 +40,21 @@ export default async function handler(req, res) {
     return
   }
 
-  // Import fs here to avoid issues
-  const fs = require('fs')
-  const path = require('path')
-  const submissionsDir = path.join(process.cwd(), 'data', 'submissions')
+  // Initialize blob storage if needed
+  if (!initialized) {
+    await initializeSubmissionsMetadata();
+    initialized = true;
+  }
+
   const { id } = req.query
 
   if (req.method === 'GET') {
     try {
-      const filePath = path.join(submissionsDir, `${id}.json`)
+      const submission = await getSubmissionById(id);
       
-      if (!fs.existsSync(filePath)) {
+      if (!submission) {
         return res.status(404).json({ error: 'Submission not found' })
       }
-
-      const content = fs.readFileSync(filePath, 'utf8')
-      const submission = JSON.parse(content)
-      submission.id = id
-
-      // Check if submission has been read
-      const readFilePath = path.join(submissionsDir, `${id}.read`)
-      submission.read = fs.existsSync(readFilePath)
 
       return res.status(200).json(submission)
     } catch (error) {
@@ -64,17 +68,15 @@ export default async function handler(req, res) {
       const { action } = req.body
 
       if (action === 'toggleRead') {
-        const readFilePath = path.join(submissionsDir, `${id}.read`)
+        const submission = await getSubmissionById(id);
         
-        if (fs.existsSync(readFilePath)) {
-          // Mark as unread
-          fs.unlinkSync(readFilePath)
-        } else {
-          // Mark as read
-          fs.writeFileSync(readFilePath, new Date().toISOString())
+        if (!submission) {
+          return res.status(404).json({ error: 'Submission not found' })
         }
-
-        return res.status(200).json({ success: true })
+        
+        const updatedSubmission = await updateSubmission(id, { read: !submission.read });
+        
+        return res.status(200).json({ success: true, submission: updatedSubmission })
       }
 
       return res.status(400).json({ error: 'Invalid action' })
@@ -86,19 +88,10 @@ export default async function handler(req, res) {
 
   if (req.method === 'DELETE') {
     try {
-      const filePath = path.join(submissionsDir, `${id}.json`)
-      const readFilePath = path.join(submissionsDir, `${id}.read`)
+      const deleted = await deleteSubmission(id);
       
-      if (!fs.existsSync(filePath)) {
+      if (!deleted) {
         return res.status(404).json({ error: 'Submission not found' })
-      }
-
-      // Delete the submission file
-      fs.unlinkSync(filePath)
-
-      // Delete the read marker if it exists
-      if (fs.existsSync(readFilePath)) {
-        fs.unlinkSync(readFilePath)
       }
 
       return res.status(200).json({ success: true })

@@ -1,7 +1,7 @@
 {
   "config": {
-    "configFile": "d:\\Dev2\\pshcommitteesite\\playwright.config.js",
-    "rootDir": "d:/Dev2/pshcommitteesite/tests",
+    "configFile": "D:\\Dev2\\pshcommitteesite\\playwright.config.js",
+    "rootDir": "D:/Dev2/pshcommitteesite/tests",
     "forbidOnly": false,
     "fullyParallel": true,
     "globalSetup": null,
@@ -10,7 +10,9 @@
     "grep": {},
     "grepInvert": null,
     "maxFailures": 0,
-    "metadata": {},
+    "metadata": {
+      "actualWorkers": 6
+    },
     "preserveOutput": "always",
     "reporter": [
       [
@@ -35,13 +37,15 @@
     "quiet": false,
     "projects": [
       {
-        "outputDir": "d:/Dev2/pshcommitteesite/test-results",
+        "outputDir": "D:/Dev2/pshcommitteesite/test-results",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {},
+        "metadata": {
+          "actualWorkers": 6
+        },
         "id": "chromium",
         "name": "chromium",
-        "testDir": "d:/Dev2/pshcommitteesite/tests",
+        "testDir": "D:/Dev2/pshcommitteesite/tests",
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
@@ -49,13 +53,15 @@
         "timeout": 30000
       },
       {
-        "outputDir": "d:/Dev2/pshcommitteesite/test-results",
+        "outputDir": "D:/Dev2/pshcommitteesite/test-results",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {},
+        "metadata": {
+          "actualWorkers": 6
+        },
         "id": "firefox",
         "name": "firefox",
-        "testDir": "d:/Dev2/pshcommitteesite/tests",
+        "testDir": "D:/Dev2/pshcommitteesite/tests",
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
@@ -63,13 +69,15 @@
         "timeout": 30000
       },
       {
-        "outputDir": "d:/Dev2/pshcommitteesite/test-results",
+        "outputDir": "D:/Dev2/pshcommitteesite/test-results",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {},
+        "metadata": {
+          "actualWorkers": 6
+        },
         "id": "Mobile Chrome",
         "name": "Mobile Chrome",
-        "testDir": "d:/Dev2/pshcommitteesite/tests",
+        "testDir": "D:/Dev2/pshcommitteesite/tests",
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
@@ -77,13 +85,15 @@
         "timeout": 30000
       },
       {
-        "outputDir": "d:/Dev2/pshcommitteesite/test-results",
+        "outputDir": "D:/Dev2/pshcommitteesite/test-results",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {},
+        "metadata": {
+          "actualWorkers": 6
+        },
         "id": "Mobile Safari",
         "name": "Mobile Safari",
-        "testDir": "d:/Dev2/pshcommitteesite/tests",
+        "testDir": "D:/Dev2/pshcommitteesite/tests",
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
@@ -91,13 +101,15 @@
         "timeout": 30000
       },
       {
-        "outputDir": "d:/Dev2/pshcommitteesite/test-results",
+        "outputDir": "D:/Dev2/pshcommitteesite/test-results",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {},
+        "metadata": {
+          "actualWorkers": 6
+        },
         "id": "Microsoft Edge",
         "name": "Microsoft Edge",
-        "testDir": "d:/Dev2/pshcommitteesite/tests",
+        "testDir": "D:/Dev2/pshcommitteesite/tests",
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
@@ -105,13 +117,15 @@
         "timeout": 30000
       },
       {
-        "outputDir": "d:/Dev2/pshcommitteesite/test-results",
+        "outputDir": "D:/Dev2/pshcommitteesite/test-results",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {},
+        "metadata": {
+          "actualWorkers": 6
+        },
         "id": "Google Chrome",
         "name": "Google Chrome",
-        "testDir": "d:/Dev2/pshcommitteesite/tests",
+        "testDir": "D:/Dev2/pshcommitteesite/tests",
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
@@ -126,24 +140,3732 @@
     "workers": 6,
     "webServer": {
       "command": "npm run dev",
-      "url": "http://localhost:3000",
+      "port": 12500,
       "reuseExistingServer": true,
       "timeout": 120000
     }
   },
-  "suites": [],
-  "errors": [
+  "suites": [
     {
-      "message": "Error: Timed out waiting 120000ms from config.webServer.",
-      "stack": "Error: Timed out waiting 120000ms from config.webServer."
+      "title": "main-site\\browser-fixes.test.js",
+      "file": "main-site/browser-fixes.test.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Browser Fixes Validation",
+          "file": "main-site/browser-fixes.test.js",
+          "line": 8,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Safari mobile menu should close after navigation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "This test is for Safari/webkit only"
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "skipped",
+                      "duration": 922,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-25T23:56:11.781Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "description": "This test is for Safari/webkit only"
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "83e1158f85657f10418c-954bf76e81755cb9f772",
+              "file": "main-site/browser-fixes.test.js",
+              "line": 9,
+              "column": 7
+            },
+            {
+              "title": "Edge mobile viewport - hamburger button should be visible",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 11632,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-25T23:56:11.781Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "83e1158f85657f10418c-19bb9019c75c29425208",
+              "file": "main-site/browser-fixes.test.js",
+              "line": 34,
+              "column": 7
+            },
+            {
+              "title": "Firefox should handle navigation without timeout",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 12154,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-25T23:56:11.818Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "83e1158f85657f10418c-bec03989df12f6853589",
+              "file": "main-site/browser-fixes.test.js",
+              "line": 48,
+              "column": 7
+            },
+            {
+              "title": "Focus indicators should be visible on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 12187,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-25T23:56:11.783Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "83e1158f85657f10418c-f0247acca480e8ec5d0c",
+              "file": "main-site/browser-fixes.test.js",
+              "line": 64,
+              "column": 7
+            },
+            {
+              "title": "Safari mobile menu should close after navigation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "83e1158f85657f10418c-16fd4763ff90ce27a97c",
+              "file": "main-site/browser-fixes.test.js",
+              "line": 9,
+              "column": 7
+            },
+            {
+              "title": "Edge mobile viewport - hamburger button should be visible",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "83e1158f85657f10418c-18ca884fb64c0f96e63b",
+              "file": "main-site/browser-fixes.test.js",
+              "line": 34,
+              "column": 7
+            },
+            {
+              "title": "Firefox should handle navigation without timeout",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "83e1158f85657f10418c-169d2e13224ab16d82f5",
+              "file": "main-site/browser-fixes.test.js",
+              "line": 48,
+              "column": 7
+            },
+            {
+              "title": "Focus indicators should be visible on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "83e1158f85657f10418c-6fc0fb53ef63910ee63f",
+              "file": "main-site/browser-fixes.test.js",
+              "line": 64,
+              "column": 7
+            },
+            {
+              "title": "Safari mobile menu should close after navigation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "83e1158f85657f10418c-d47b013edddf44853ae2",
+              "file": "main-site/browser-fixes.test.js",
+              "line": 9,
+              "column": 7
+            },
+            {
+              "title": "Edge mobile viewport - hamburger button should be visible",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "83e1158f85657f10418c-037632f505f037737a8e",
+              "file": "main-site/browser-fixes.test.js",
+              "line": 34,
+              "column": 7
+            },
+            {
+              "title": "Firefox should handle navigation without timeout",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "83e1158f85657f10418c-f0081c20c7b76dce281f",
+              "file": "main-site/browser-fixes.test.js",
+              "line": 48,
+              "column": 7
+            },
+            {
+              "title": "Focus indicators should be visible on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "83e1158f85657f10418c-adcb01df582f2c9760df",
+              "file": "main-site/browser-fixes.test.js",
+              "line": 64,
+              "column": 7
+            },
+            {
+              "title": "Safari mobile menu should close after navigation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "83e1158f85657f10418c-3ea8da5ad6c741fc3e21",
+              "file": "main-site/browser-fixes.test.js",
+              "line": 9,
+              "column": 7
+            },
+            {
+              "title": "Edge mobile viewport - hamburger button should be visible",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "83e1158f85657f10418c-12afbe793bc54bbf152c",
+              "file": "main-site/browser-fixes.test.js",
+              "line": 34,
+              "column": 7
+            },
+            {
+              "title": "Firefox should handle navigation without timeout",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "83e1158f85657f10418c-67f67982869c2c89957e",
+              "file": "main-site/browser-fixes.test.js",
+              "line": 48,
+              "column": 7
+            },
+            {
+              "title": "Focus indicators should be visible on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "83e1158f85657f10418c-e78bb1a5c4aba8934e3c",
+              "file": "main-site/browser-fixes.test.js",
+              "line": 64,
+              "column": 7
+            },
+            {
+              "title": "Safari mobile menu should close after navigation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Microsoft Edge",
+                  "projectName": "Microsoft Edge",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "83e1158f85657f10418c-def61972a9e1abf2b173",
+              "file": "main-site/browser-fixes.test.js",
+              "line": 9,
+              "column": 7
+            },
+            {
+              "title": "Edge mobile viewport - hamburger button should be visible",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Microsoft Edge",
+                  "projectName": "Microsoft Edge",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "83e1158f85657f10418c-6d94321e2edddd3eb963",
+              "file": "main-site/browser-fixes.test.js",
+              "line": 34,
+              "column": 7
+            },
+            {
+              "title": "Firefox should handle navigation without timeout",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Microsoft Edge",
+                  "projectName": "Microsoft Edge",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "83e1158f85657f10418c-eddaf38ba327f26dfc25",
+              "file": "main-site/browser-fixes.test.js",
+              "line": 48,
+              "column": 7
+            },
+            {
+              "title": "Focus indicators should be visible on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Microsoft Edge",
+                  "projectName": "Microsoft Edge",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "83e1158f85657f10418c-203941b055d2a0c0c876",
+              "file": "main-site/browser-fixes.test.js",
+              "line": 64,
+              "column": 7
+            },
+            {
+              "title": "Safari mobile menu should close after navigation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Google Chrome",
+                  "projectName": "Google Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "83e1158f85657f10418c-bf4b4a5c4129fb075e50",
+              "file": "main-site/browser-fixes.test.js",
+              "line": 9,
+              "column": 7
+            },
+            {
+              "title": "Edge mobile viewport - hamburger button should be visible",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Google Chrome",
+                  "projectName": "Google Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "83e1158f85657f10418c-2c4abec8a553589ee59d",
+              "file": "main-site/browser-fixes.test.js",
+              "line": 34,
+              "column": 7
+            },
+            {
+              "title": "Firefox should handle navigation without timeout",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Google Chrome",
+                  "projectName": "Google Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "83e1158f85657f10418c-95284f7a0eb41c504c8b",
+              "file": "main-site/browser-fixes.test.js",
+              "line": 48,
+              "column": 7
+            },
+            {
+              "title": "Focus indicators should be visible on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Google Chrome",
+                  "projectName": "Google Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "83e1158f85657f10418c-ab9a51bff04dca3120df",
+              "file": "main-site/browser-fixes.test.js",
+              "line": 64,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "main-site\\navigation-fixes.test.js",
+      "file": "main-site/navigation-fixes.test.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Navigation Fix Validation",
+          "file": "main-site/navigation-fixes.test.js",
+          "line": 8,
+          "column": 6,
+          "specs": [
+            {
+              "title": "blog page should have correct heading",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 11731,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-25T23:56:11.827Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d9c925adf6860a1f66f1-7b464f49ec4529c5c4e4",
+              "file": "main-site/navigation-fixes.test.js",
+              "line": 9,
+              "column": 7
+            },
+            {
+              "title": "active page highlighting should work correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 5,
+                      "status": "passed",
+                      "duration": 11250,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-25T23:56:11.842Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d9c925adf6860a1f66f1-10039db98af0b7050f2b",
+              "file": "main-site/navigation-fixes.test.js",
+              "line": 17,
+              "column": 7
+            },
+            {
+              "title": "blog page should have correct heading",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d9c925adf6860a1f66f1-01f028e75830ef5c515c",
+              "file": "main-site/navigation-fixes.test.js",
+              "line": 9,
+              "column": 7
+            },
+            {
+              "title": "active page highlighting should work correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d9c925adf6860a1f66f1-c8fe412bc867fe18f949",
+              "file": "main-site/navigation-fixes.test.js",
+              "line": 17,
+              "column": 7
+            },
+            {
+              "title": "blog page should have correct heading",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d9c925adf6860a1f66f1-27d9193e9da83ee08794",
+              "file": "main-site/navigation-fixes.test.js",
+              "line": 9,
+              "column": 7
+            },
+            {
+              "title": "active page highlighting should work correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d9c925adf6860a1f66f1-a153a099f0e168c9fb9a",
+              "file": "main-site/navigation-fixes.test.js",
+              "line": 17,
+              "column": 7
+            },
+            {
+              "title": "blog page should have correct heading",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d9c925adf6860a1f66f1-0951f4f6883bd33ab4ba",
+              "file": "main-site/navigation-fixes.test.js",
+              "line": 9,
+              "column": 7
+            },
+            {
+              "title": "active page highlighting should work correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d9c925adf6860a1f66f1-cdec63d6255edab0bca1",
+              "file": "main-site/navigation-fixes.test.js",
+              "line": 17,
+              "column": 7
+            },
+            {
+              "title": "blog page should have correct heading",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Microsoft Edge",
+                  "projectName": "Microsoft Edge",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d9c925adf6860a1f66f1-af26b46340a851a3a89a",
+              "file": "main-site/navigation-fixes.test.js",
+              "line": 9,
+              "column": 7
+            },
+            {
+              "title": "active page highlighting should work correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Microsoft Edge",
+                  "projectName": "Microsoft Edge",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d9c925adf6860a1f66f1-6c9198ef9e1729b8add5",
+              "file": "main-site/navigation-fixes.test.js",
+              "line": 17,
+              "column": 7
+            },
+            {
+              "title": "blog page should have correct heading",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Google Chrome",
+                  "projectName": "Google Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d9c925adf6860a1f66f1-480df3117eb328411383",
+              "file": "main-site/navigation-fixes.test.js",
+              "line": 9,
+              "column": 7
+            },
+            {
+              "title": "active page highlighting should work correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Google Chrome",
+                  "projectName": "Google Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d9c925adf6860a1f66f1-75a161158be4a9daa728",
+              "file": "main-site/navigation-fixes.test.js",
+              "line": 17,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "main-site\\navigation.test.js",
+      "file": "main-site/navigation.test.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Desktop Navigation",
+          "file": "main-site/navigation.test.js",
+          "line": 15,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should display all navigation links",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 10842,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-25T23:56:13.493Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-ca4ba58944ff87341833",
+              "file": "main-site/navigation.test.js",
+              "line": 23,
+              "column": 7
+            },
+            {
+              "title": "should navigate to correct pages when clicking links",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 5,
+                      "status": "interrupted",
+                      "duration": 4281,
+                      "error": {
+                        "message": "Error: page.waitForLoadState: Target page, context or browser has been closed",
+                        "stack": "Error: page.waitForLoadState: Target page, context or browser has been closed\n    at waitForPageLoad (D:\\Dev2\\pshcommitteesite\\tests\\utils\\test-helpers.js:69:14)\n    at D:\\Dev2\\pshcommitteesite\\tests\\main-site\\navigation.test.js:42:28",
+                        "location": {
+                          "file": "D:\\Dev2\\pshcommitteesite\\tests\\utils\\test-helpers.js",
+                          "column": 14,
+                          "line": 69
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mutils\\test-helpers.js:69\n\n\u001b[0m \u001b[90m 67 |\u001b[39m \u001b[90m */\u001b[39m\n \u001b[90m 68 |\u001b[39m \u001b[36mexport\u001b[39m \u001b[36masync\u001b[39m \u001b[36mfunction\u001b[39m waitForPageLoad(page) {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 69 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 70 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'domcontentloaded'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 71 |\u001b[39m }\n \u001b[90m 72 |\u001b[39m \u001b[90m/**\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\Dev2\\pshcommitteesite\\tests\\utils\\test-helpers.js",
+                            "column": 14,
+                            "line": 69
+                          },
+                          "message": "Error: page.waitForLoadState: Target page, context or browser has been closed\n\n\u001b[90m   at \u001b[39mutils\\test-helpers.js:69\n\n\u001b[0m \u001b[90m 67 |\u001b[39m \u001b[90m */\u001b[39m\n \u001b[90m 68 |\u001b[39m \u001b[36mexport\u001b[39m \u001b[36masync\u001b[39m \u001b[36mfunction\u001b[39m waitForPageLoad(page) {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 69 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 70 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'domcontentloaded'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 71 |\u001b[39m }\n \u001b[90m 72 |\u001b[39m \u001b[90m/**\u001b[39m\u001b[0m\n\u001b[2m    at waitForPageLoad (D:\\Dev2\\pshcommitteesite\\tests\\utils\\test-helpers.js:69:14)\u001b[22m\n\u001b[2m    at D:\\Dev2\\pshcommitteesite\\tests\\main-site\\navigation.test.js:42:28\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-25T23:56:23.738Z",
+                      "annotations": [],
+                      "attachments": [],
+                      "errorLocation": {
+                        "file": "D:\\Dev2\\pshcommitteesite\\tests\\utils\\test-helpers.js",
+                        "column": 14,
+                        "line": 69
+                      }
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-15f8e6af17ba73aabd68",
+              "file": "main-site/navigation.test.js",
+              "line": 32,
+              "column": 7
+            },
+            {
+              "title": "should highlight active page in navigation",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 3770,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_ABORTED at http://localhost:12500/about\nCall log:\n\u001b[2m  - navigating to \"http://localhost:12500/about\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_ABORTED at http://localhost:12500/about\nCall log:\n\u001b[2m  - navigating to \"http://localhost:12500/about\", waiting until \"load\"\u001b[22m\n\n    at D:\\Dev2\\pshcommitteesite\\tests\\main-site\\navigation.test.js:50:16",
+                        "location": {
+                          "file": "D:\\Dev2\\pshcommitteesite\\tests\\main-site\\navigation.test.js",
+                          "column": 16,
+                          "line": 50
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 48 |\u001b[39m   test(\u001b[32m'should highlight active page in navigation'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m 49 |\u001b[39m     \u001b[90m// Navigate to About page\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 50 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/about'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 51 |\u001b[39m     \u001b[36mawait\u001b[39m waitForPageLoad(page)\u001b[33m;\u001b[39m\n \u001b[90m 52 |\u001b[39m     \n \u001b[90m 53 |\u001b[39m     \u001b[90m// Check that About link has active styling\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\Dev2\\pshcommitteesite\\tests\\main-site\\navigation.test.js",
+                            "column": 16,
+                            "line": 50
+                          },
+                          "message": "Error: page.goto: net::ERR_ABORTED at http://localhost:12500/about\nCall log:\n\u001b[2m  - navigating to \"http://localhost:12500/about\", waiting until \"load\"\u001b[22m\n\n\n\u001b[0m \u001b[90m 48 |\u001b[39m   test(\u001b[32m'should highlight active page in navigation'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m 49 |\u001b[39m     \u001b[90m// Navigate to About page\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 50 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/about'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 51 |\u001b[39m     \u001b[36mawait\u001b[39m waitForPageLoad(page)\u001b[33m;\u001b[39m\n \u001b[90m 52 |\u001b[39m     \n \u001b[90m 53 |\u001b[39m     \u001b[90m// Check that About link has active styling\u001b[39m\u001b[0m\n\u001b[2m    at D:\\Dev2\\pshcommitteesite\\tests\\main-site\\navigation.test.js:50:16\u001b[22m"
+                        },
+                        {
+                          "message": "Error: browserContext._wrapApiCall: Test ended.\nBrowser logs:\n\n<launching> C:\\Users\\Admin\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1179\\chrome-win\\headless_shell.exe --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=AcceptCHFrame,AutoExpandDetailsElement,AvoidUnnecessaryBeforeUnloadCheckSync,CertificateTransparencyComponentUpdater,DestroyProfileOnBrowserClose,DialMediaRouteProvider,ExtensionManifestV2Disabled,GlobalMediaControls,HttpsUpgrades,ImprovedCookieControls,LazyFrameLoading,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --enable-automation --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=C:\\Users\\Admin\\AppData\\Local\\Temp\\playwright_chromiumdev_profile-oNZXTH --remote-debugging-pipe --no-startup-window\n<launched> pid=72344"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-25T23:56:24.276Z",
+                      "annotations": [],
+                      "attachments": [],
+                      "errorLocation": {
+                        "file": "D:\\Dev2\\pshcommitteesite\\tests\\main-site\\navigation.test.js",
+                        "column": 16,
+                        "line": 50
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-9790f075e3291ffe7469",
+              "file": "main-site/navigation.test.js",
+              "line": 48,
+              "column": 7
+            },
+            {
+              "title": "should show hover effects on navigation links",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2945,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-25T23:56:24.351Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-7cb2821d40b21f956811",
+              "file": "main-site/navigation.test.js",
+              "line": 63,
+              "column": 7
+            },
+            {
+              "title": "should display all navigation links",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-4b38d8e032c4b1f84c74",
+              "file": "main-site/navigation.test.js",
+              "line": 23,
+              "column": 7
+            },
+            {
+              "title": "should navigate to correct pages when clicking links",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-7e21ff4c40d28206cb93",
+              "file": "main-site/navigation.test.js",
+              "line": 32,
+              "column": 7
+            },
+            {
+              "title": "should highlight active page in navigation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-bdddac7508099c7ea8a4",
+              "file": "main-site/navigation.test.js",
+              "line": 48,
+              "column": 7
+            },
+            {
+              "title": "should show hover effects on navigation links",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-f119ea4834facdc9960b",
+              "file": "main-site/navigation.test.js",
+              "line": 63,
+              "column": 7
+            },
+            {
+              "title": "should display all navigation links",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-1005141cd3df79af52a0",
+              "file": "main-site/navigation.test.js",
+              "line": 23,
+              "column": 7
+            },
+            {
+              "title": "should navigate to correct pages when clicking links",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-f58c93b88846070003ee",
+              "file": "main-site/navigation.test.js",
+              "line": 32,
+              "column": 7
+            },
+            {
+              "title": "should highlight active page in navigation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-0a7c57c44c8da232ad5a",
+              "file": "main-site/navigation.test.js",
+              "line": 48,
+              "column": 7
+            },
+            {
+              "title": "should show hover effects on navigation links",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-a8202562f6be59bf399b",
+              "file": "main-site/navigation.test.js",
+              "line": 63,
+              "column": 7
+            },
+            {
+              "title": "should display all navigation links",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-b9706f8356a55e85f6ed",
+              "file": "main-site/navigation.test.js",
+              "line": 23,
+              "column": 7
+            },
+            {
+              "title": "should navigate to correct pages when clicking links",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-d7a7cac40b6f0c6b2fe0",
+              "file": "main-site/navigation.test.js",
+              "line": 32,
+              "column": 7
+            },
+            {
+              "title": "should highlight active page in navigation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-2356f32b27f3e63a0dbf",
+              "file": "main-site/navigation.test.js",
+              "line": 48,
+              "column": 7
+            },
+            {
+              "title": "should show hover effects on navigation links",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-90087d10d0cf6ee3afd6",
+              "file": "main-site/navigation.test.js",
+              "line": 63,
+              "column": 7
+            },
+            {
+              "title": "should display all navigation links",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Microsoft Edge",
+                  "projectName": "Microsoft Edge",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-2c789291e5ba49875ca9",
+              "file": "main-site/navigation.test.js",
+              "line": 23,
+              "column": 7
+            },
+            {
+              "title": "should navigate to correct pages when clicking links",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Microsoft Edge",
+                  "projectName": "Microsoft Edge",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-2b49e284c61502f6910d",
+              "file": "main-site/navigation.test.js",
+              "line": 32,
+              "column": 7
+            },
+            {
+              "title": "should highlight active page in navigation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Microsoft Edge",
+                  "projectName": "Microsoft Edge",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-2b8b3e30046dc4b074a7",
+              "file": "main-site/navigation.test.js",
+              "line": 48,
+              "column": 7
+            },
+            {
+              "title": "should show hover effects on navigation links",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Microsoft Edge",
+                  "projectName": "Microsoft Edge",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-bfd4fb79cd3f1e642dd7",
+              "file": "main-site/navigation.test.js",
+              "line": 63,
+              "column": 7
+            },
+            {
+              "title": "should display all navigation links",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Google Chrome",
+                  "projectName": "Google Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-8e67ff537a5ca6af7c67",
+              "file": "main-site/navigation.test.js",
+              "line": 23,
+              "column": 7
+            },
+            {
+              "title": "should navigate to correct pages when clicking links",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Google Chrome",
+                  "projectName": "Google Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-4f9b727229c679ac2628",
+              "file": "main-site/navigation.test.js",
+              "line": 32,
+              "column": 7
+            },
+            {
+              "title": "should highlight active page in navigation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Google Chrome",
+                  "projectName": "Google Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-0ad5e69eb2168c8fb17d",
+              "file": "main-site/navigation.test.js",
+              "line": 48,
+              "column": 7
+            },
+            {
+              "title": "should show hover effects on navigation links",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Google Chrome",
+                  "projectName": "Google Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-6493f3107ef3bff2edb5",
+              "file": "main-site/navigation.test.js",
+              "line": 63,
+              "column": 7
+            }
+          ]
+        },
+        {
+          "title": "Mobile Navigation",
+          "file": "main-site/navigation.test.js",
+          "line": 74,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should show hamburger menu button on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 3075,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-25T23:56:24.364Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-40550b79d802cd8f2d30",
+              "file": "main-site/navigation.test.js",
+              "line": 82,
+              "column": 7
+            },
+            {
+              "title": "should toggle mobile menu when clicking hamburger button",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 3057,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-25T23:56:24.674Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-8ed0ba559572a7a506cd",
+              "file": "main-site/navigation.test.js",
+              "line": 91,
+              "column": 7
+            },
+            {
+              "title": "should close mobile menu when clicking outside",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 3150,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-25T23:56:24.721Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-24a8c2446b972018dc40",
+              "file": "main-site/navigation.test.js",
+              "line": 109,
+              "column": 7
+            },
+            {
+              "title": "should navigate to pages from mobile menu",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "interrupted",
+                      "duration": 753,
+                      "error": {
+                        "message": "Error: browserContext.newPage: Target page, context or browser has been closed",
+                        "stack": "Error: browserContext.newPage: Target page, context or browser has been closed"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserContext.newPage: Target page, context or browser has been closed"
+                        },
+                        {
+                          "message": "Error: browserContext._wrapApiCall: Test ended.\nBrowser logs:\n\n<launching> C:\\Users\\Admin\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1179\\chrome-win\\headless_shell.exe --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=AcceptCHFrame,AutoExpandDetailsElement,AvoidUnnecessaryBeforeUnloadCheckSync,CertificateTransparencyComponentUpdater,DestroyProfileOnBrowserClose,DialMediaRouteProvider,ExtensionManifestV2Disabled,GlobalMediaControls,HttpsUpgrades,ImprovedCookieControls,LazyFrameLoading,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --enable-automation --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=C:\\Users\\Admin\\AppData\\Local\\Temp\\playwright_chromiumdev_profile-E4Ld49 --remote-debugging-pipe --no-startup-window\n<launched> pid=74868"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-25T23:56:27.321Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-4af10ef0bc6183082993",
+              "file": "main-site/navigation.test.js",
+              "line": 121,
+              "column": 7
+            },
+            {
+              "title": "should show active page indicator in mobile menu",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 4,
+                      "status": "interrupted",
+                      "duration": 596,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_ABORTED at http://localhost:12500/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:12500/\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_ABORTED at http://localhost:12500/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:12500/\", waiting until \"load\"\u001b[22m\n\n    at D:\\Dev2\\pshcommitteesite\\tests\\main-site\\navigation.test.js:78:16",
+                        "location": {
+                          "file": "D:\\Dev2\\pshcommitteesite\\tests\\main-site\\navigation.test.js",
+                          "column": 16,
+                          "line": 78
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 76 |\u001b[39m     \u001b[90m// Set mobile viewport\u001b[39m\n \u001b[90m 77 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39msetViewportSize(\u001b[33mVIEWPORTS\u001b[39m\u001b[33m.\u001b[39mmobile)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 78 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 79 |\u001b[39m     \u001b[36mawait\u001b[39m waitForPageLoad(page)\u001b[33m;\u001b[39m\n \u001b[90m 80 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 81 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\Dev2\\pshcommitteesite\\tests\\main-site\\navigation.test.js",
+                            "column": 16,
+                            "line": 78
+                          },
+                          "message": "Error: page.goto: net::ERR_ABORTED at http://localhost:12500/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:12500/\", waiting until \"load\"\u001b[22m\n\n\n\u001b[0m \u001b[90m 76 |\u001b[39m     \u001b[90m// Set mobile viewport\u001b[39m\n \u001b[90m 77 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39msetViewportSize(\u001b[33mVIEWPORTS\u001b[39m\u001b[33m.\u001b[39mmobile)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 78 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 79 |\u001b[39m     \u001b[36mawait\u001b[39m waitForPageLoad(page)\u001b[33m;\u001b[39m\n \u001b[90m 80 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 81 |\u001b[39m\u001b[0m\n\u001b[2m    at D:\\Dev2\\pshcommitteesite\\tests\\main-site\\navigation.test.js:78:16\u001b[22m"
+                        },
+                        {
+                          "message": "Error: browserContext._wrapApiCall: Target page, context or browser has been closed"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-25T23:56:27.454Z",
+                      "annotations": [],
+                      "attachments": [],
+                      "errorLocation": {
+                        "file": "D:\\Dev2\\pshcommitteesite\\tests\\main-site\\navigation.test.js",
+                        "column": 16,
+                        "line": 78
+                      }
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-31f8c5fbe2c07b862a68",
+              "file": "main-site/navigation.test.js",
+              "line": 134,
+              "column": 7
+            },
+            {
+              "title": "should have smooth animations for menu open/close",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "interrupted",
+                      "duration": 251,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_ABORTED at http://localhost:12500/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:12500/\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_ABORTED at http://localhost:12500/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:12500/\", waiting until \"load\"\u001b[22m\n\n    at D:\\Dev2\\pshcommitteesite\\tests\\main-site\\navigation.test.js:78:16",
+                        "location": {
+                          "file": "D:\\Dev2\\pshcommitteesite\\tests\\main-site\\navigation.test.js",
+                          "column": 16,
+                          "line": 78
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 76 |\u001b[39m     \u001b[90m// Set mobile viewport\u001b[39m\n \u001b[90m 77 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39msetViewportSize(\u001b[33mVIEWPORTS\u001b[39m\u001b[33m.\u001b[39mmobile)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 78 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 79 |\u001b[39m     \u001b[36mawait\u001b[39m waitForPageLoad(page)\u001b[33m;\u001b[39m\n \u001b[90m 80 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 81 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\Dev2\\pshcommitteesite\\tests\\main-site\\navigation.test.js",
+                            "column": 16,
+                            "line": 78
+                          },
+                          "message": "Error: page.goto: net::ERR_ABORTED at http://localhost:12500/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:12500/\", waiting until \"load\"\u001b[22m\n\n\n\u001b[0m \u001b[90m 76 |\u001b[39m     \u001b[90m// Set mobile viewport\u001b[39m\n \u001b[90m 77 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39msetViewportSize(\u001b[33mVIEWPORTS\u001b[39m\u001b[33m.\u001b[39mmobile)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 78 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 79 |\u001b[39m     \u001b[36mawait\u001b[39m waitForPageLoad(page)\u001b[33m;\u001b[39m\n \u001b[90m 80 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 81 |\u001b[39m\u001b[0m\n\u001b[2m    at D:\\Dev2\\pshcommitteesite\\tests\\main-site\\navigation.test.js:78:16\u001b[22m"
+                        },
+                        {
+                          "message": "Error: browserContext._wrapApiCall: Target page, context or browser has been closed"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-25T23:56:27.743Z",
+                      "annotations": [],
+                      "attachments": [],
+                      "errorLocation": {
+                        "file": "D:\\Dev2\\pshcommitteesite\\tests\\main-site\\navigation.test.js",
+                        "column": 16,
+                        "line": 78
+                      }
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-d0e2f297c1e3e9990fce",
+              "file": "main-site/navigation.test.js",
+              "line": 148,
+              "column": 7
+            },
+            {
+              "title": "should show hamburger menu button on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-c899663830858f092330",
+              "file": "main-site/navigation.test.js",
+              "line": 82,
+              "column": 7
+            },
+            {
+              "title": "should toggle mobile menu when clicking hamburger button",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-1d08a7adfa3a804c2fc2",
+              "file": "main-site/navigation.test.js",
+              "line": 91,
+              "column": 7
+            },
+            {
+              "title": "should close mobile menu when clicking outside",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-83d90629bf6f95553764",
+              "file": "main-site/navigation.test.js",
+              "line": 109,
+              "column": 7
+            },
+            {
+              "title": "should navigate to pages from mobile menu",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-540e925d1778b32e7c25",
+              "file": "main-site/navigation.test.js",
+              "line": 121,
+              "column": 7
+            },
+            {
+              "title": "should show active page indicator in mobile menu",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-98889383109fa4cd7188",
+              "file": "main-site/navigation.test.js",
+              "line": 134,
+              "column": 7
+            },
+            {
+              "title": "should have smooth animations for menu open/close",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-cf4579433f6a805bd692",
+              "file": "main-site/navigation.test.js",
+              "line": 148,
+              "column": 7
+            },
+            {
+              "title": "should show hamburger menu button on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-ff694bf78264370f4c45",
+              "file": "main-site/navigation.test.js",
+              "line": 82,
+              "column": 7
+            },
+            {
+              "title": "should toggle mobile menu when clicking hamburger button",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-4304f5b815ef1ea59fec",
+              "file": "main-site/navigation.test.js",
+              "line": 91,
+              "column": 7
+            },
+            {
+              "title": "should close mobile menu when clicking outside",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-18267f07b6c3c376f70a",
+              "file": "main-site/navigation.test.js",
+              "line": 109,
+              "column": 7
+            },
+            {
+              "title": "should navigate to pages from mobile menu",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-68f52a863894956bd402",
+              "file": "main-site/navigation.test.js",
+              "line": 121,
+              "column": 7
+            },
+            {
+              "title": "should show active page indicator in mobile menu",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-ae679887ef7c4b523132",
+              "file": "main-site/navigation.test.js",
+              "line": 134,
+              "column": 7
+            },
+            {
+              "title": "should have smooth animations for menu open/close",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-2eb9648e360c0b3fabb2",
+              "file": "main-site/navigation.test.js",
+              "line": 148,
+              "column": 7
+            },
+            {
+              "title": "should show hamburger menu button on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-5c5fa5dba699d107e17d",
+              "file": "main-site/navigation.test.js",
+              "line": 82,
+              "column": 7
+            },
+            {
+              "title": "should toggle mobile menu when clicking hamburger button",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-0beea34aa7d7cf400854",
+              "file": "main-site/navigation.test.js",
+              "line": 91,
+              "column": 7
+            },
+            {
+              "title": "should close mobile menu when clicking outside",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-62ae6fb65a4e83e07cf7",
+              "file": "main-site/navigation.test.js",
+              "line": 109,
+              "column": 7
+            },
+            {
+              "title": "should navigate to pages from mobile menu",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-1014fab9ea4a1aeaf795",
+              "file": "main-site/navigation.test.js",
+              "line": 121,
+              "column": 7
+            },
+            {
+              "title": "should show active page indicator in mobile menu",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-6023b40543f7f1251ffa",
+              "file": "main-site/navigation.test.js",
+              "line": 134,
+              "column": 7
+            },
+            {
+              "title": "should have smooth animations for menu open/close",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-ae7ad9e1b288994330de",
+              "file": "main-site/navigation.test.js",
+              "line": 148,
+              "column": 7
+            },
+            {
+              "title": "should show hamburger menu button on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Microsoft Edge",
+                  "projectName": "Microsoft Edge",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-00ed481e33c515599e27",
+              "file": "main-site/navigation.test.js",
+              "line": 82,
+              "column": 7
+            },
+            {
+              "title": "should toggle mobile menu when clicking hamburger button",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Microsoft Edge",
+                  "projectName": "Microsoft Edge",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-6fbff1af7e67159cde5b",
+              "file": "main-site/navigation.test.js",
+              "line": 91,
+              "column": 7
+            },
+            {
+              "title": "should close mobile menu when clicking outside",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Microsoft Edge",
+                  "projectName": "Microsoft Edge",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-85e2b9c9b9312190ab52",
+              "file": "main-site/navigation.test.js",
+              "line": 109,
+              "column": 7
+            },
+            {
+              "title": "should navigate to pages from mobile menu",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Microsoft Edge",
+                  "projectName": "Microsoft Edge",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-0cacf2933b30261d01a5",
+              "file": "main-site/navigation.test.js",
+              "line": 121,
+              "column": 7
+            },
+            {
+              "title": "should show active page indicator in mobile menu",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Microsoft Edge",
+                  "projectName": "Microsoft Edge",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-7946aba9a6cccb9a7306",
+              "file": "main-site/navigation.test.js",
+              "line": 134,
+              "column": 7
+            },
+            {
+              "title": "should have smooth animations for menu open/close",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Microsoft Edge",
+                  "projectName": "Microsoft Edge",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-25d22530f4081f589dd3",
+              "file": "main-site/navigation.test.js",
+              "line": 148,
+              "column": 7
+            },
+            {
+              "title": "should show hamburger menu button on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Google Chrome",
+                  "projectName": "Google Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-34af56987e155084bc23",
+              "file": "main-site/navigation.test.js",
+              "line": 82,
+              "column": 7
+            },
+            {
+              "title": "should toggle mobile menu when clicking hamburger button",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Google Chrome",
+                  "projectName": "Google Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-444dd63985cc36a08273",
+              "file": "main-site/navigation.test.js",
+              "line": 91,
+              "column": 7
+            },
+            {
+              "title": "should close mobile menu when clicking outside",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Google Chrome",
+                  "projectName": "Google Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-bac830274b1314d20e8c",
+              "file": "main-site/navigation.test.js",
+              "line": 109,
+              "column": 7
+            },
+            {
+              "title": "should navigate to pages from mobile menu",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Google Chrome",
+                  "projectName": "Google Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-fd2828acaf59bc89aed1",
+              "file": "main-site/navigation.test.js",
+              "line": 121,
+              "column": 7
+            },
+            {
+              "title": "should show active page indicator in mobile menu",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Google Chrome",
+                  "projectName": "Google Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-ad9906ec963ddbbbfec3",
+              "file": "main-site/navigation.test.js",
+              "line": 134,
+              "column": 7
+            },
+            {
+              "title": "should have smooth animations for menu open/close",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Google Chrome",
+                  "projectName": "Google Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-218e9cc2b3509a78337a",
+              "file": "main-site/navigation.test.js",
+              "line": 148,
+              "column": 7
+            }
+          ]
+        },
+        {
+          "title": "Responsive Navigation",
+          "file": "main-site/navigation.test.js",
+          "line": 163,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should switch between desktop and mobile navigation at breakpoint",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "interrupted",
+                      "duration": 41,
+                      "error": {
+                        "message": "Error: browser.newContext: Target page, context or browser has been closed",
+                        "stack": "Error: browser.newContext: Target page, context or browser has been closed"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browser.newContext: Target page, context or browser has been closed"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-25T23:56:27.972Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-a8fd01fc01ab8c6a69c3",
+              "file": "main-site/navigation.test.js",
+              "line": 164,
+              "column": 7
+            },
+            {
+              "title": "should switch between desktop and mobile navigation at breakpoint",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-8465a1386cfec1819715",
+              "file": "main-site/navigation.test.js",
+              "line": 164,
+              "column": 7
+            },
+            {
+              "title": "should switch between desktop and mobile navigation at breakpoint",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-186605190408dc60093f",
+              "file": "main-site/navigation.test.js",
+              "line": 164,
+              "column": 7
+            },
+            {
+              "title": "should switch between desktop and mobile navigation at breakpoint",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-2ab4d34cbb061356835d",
+              "file": "main-site/navigation.test.js",
+              "line": 164,
+              "column": 7
+            },
+            {
+              "title": "should switch between desktop and mobile navigation at breakpoint",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Microsoft Edge",
+                  "projectName": "Microsoft Edge",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-23783eb405592e91f2c6",
+              "file": "main-site/navigation.test.js",
+              "line": 164,
+              "column": 7
+            },
+            {
+              "title": "should switch between desktop and mobile navigation at breakpoint",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Google Chrome",
+                  "projectName": "Google Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-2ca6bef6407334d33ca5",
+              "file": "main-site/navigation.test.js",
+              "line": 164,
+              "column": 7
+            }
+          ]
+        },
+        {
+          "title": "Navigation Accessibility",
+          "file": "main-site/navigation.test.js",
+          "line": 181,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should have proper ARIA attributes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-8adea09962872093d87c",
+              "file": "main-site/navigation.test.js",
+              "line": 182,
+              "column": 7
+            },
+            {
+              "title": "should be keyboard navigable",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-38909fd402f426d856fa",
+              "file": "main-site/navigation.test.js",
+              "line": 196,
+              "column": 7
+            },
+            {
+              "title": "should have sufficient color contrast",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-79da59e009614276aa94",
+              "file": "main-site/navigation.test.js",
+              "line": 211,
+              "column": 7
+            },
+            {
+              "title": "should have proper ARIA attributes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-0de471ed7dd23b40a396",
+              "file": "main-site/navigation.test.js",
+              "line": 182,
+              "column": 7
+            },
+            {
+              "title": "should be keyboard navigable",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-ac1fc3eb57d9fd0a1558",
+              "file": "main-site/navigation.test.js",
+              "line": 196,
+              "column": 7
+            },
+            {
+              "title": "should have sufficient color contrast",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-f824e7e6c79e2cc28086",
+              "file": "main-site/navigation.test.js",
+              "line": 211,
+              "column": 7
+            },
+            {
+              "title": "should have proper ARIA attributes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-936f390633dc0aba0db3",
+              "file": "main-site/navigation.test.js",
+              "line": 182,
+              "column": 7
+            },
+            {
+              "title": "should be keyboard navigable",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-9d471627016340679b04",
+              "file": "main-site/navigation.test.js",
+              "line": 196,
+              "column": 7
+            },
+            {
+              "title": "should have sufficient color contrast",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-cee790d0814535b043f7",
+              "file": "main-site/navigation.test.js",
+              "line": 211,
+              "column": 7
+            },
+            {
+              "title": "should have proper ARIA attributes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-5977a5fb61980a40d40d",
+              "file": "main-site/navigation.test.js",
+              "line": 182,
+              "column": 7
+            },
+            {
+              "title": "should be keyboard navigable",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-90301eb95cd6fb1e4e93",
+              "file": "main-site/navigation.test.js",
+              "line": 196,
+              "column": 7
+            },
+            {
+              "title": "should have sufficient color contrast",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-979ba4051879983c5b5a",
+              "file": "main-site/navigation.test.js",
+              "line": 211,
+              "column": 7
+            },
+            {
+              "title": "should have proper ARIA attributes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Microsoft Edge",
+                  "projectName": "Microsoft Edge",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-9b7f3b917882792dd92d",
+              "file": "main-site/navigation.test.js",
+              "line": 182,
+              "column": 7
+            },
+            {
+              "title": "should be keyboard navigable",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Microsoft Edge",
+                  "projectName": "Microsoft Edge",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-11dc554b3ee6c4d66b45",
+              "file": "main-site/navigation.test.js",
+              "line": 196,
+              "column": 7
+            },
+            {
+              "title": "should have sufficient color contrast",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Microsoft Edge",
+                  "projectName": "Microsoft Edge",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-27222075110f3d48766b",
+              "file": "main-site/navigation.test.js",
+              "line": 211,
+              "column": 7
+            },
+            {
+              "title": "should have proper ARIA attributes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Google Chrome",
+                  "projectName": "Google Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-4238b840e1ee5c0dd0eb",
+              "file": "main-site/navigation.test.js",
+              "line": 182,
+              "column": 7
+            },
+            {
+              "title": "should be keyboard navigable",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Google Chrome",
+                  "projectName": "Google Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-eb80b9311980a4393e68",
+              "file": "main-site/navigation.test.js",
+              "line": 196,
+              "column": 7
+            },
+            {
+              "title": "should have sufficient color contrast",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Google Chrome",
+                  "projectName": "Google Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "97fa1ca8649352b6d0ba-46029defd5cf65a24f1c",
+              "file": "main-site/navigation.test.js",
+              "line": 211,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "main-site\\pages.test.js",
+      "file": "main-site/pages.test.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Homepage Content",
+          "file": "main-site/pages.test.js",
+          "line": 9,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should display hero section with correct content",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-4fc0de879f58bf6fd7b6",
+              "file": "main-site/pages.test.js",
+              "line": 15,
+              "column": 7
+            },
+            {
+              "title": "should display quick stats section",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-f74993da92409755a3df",
+              "file": "main-site/pages.test.js",
+              "line": 34,
+              "column": 7
+            },
+            {
+              "title": "should display what is PSH section",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-5a756d6ae3c38bdf05ca",
+              "file": "main-site/pages.test.js",
+              "line": 45,
+              "column": 7
+            },
+            {
+              "title": "should display upcoming events section",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-2349fedd144b69452954",
+              "file": "main-site/pages.test.js",
+              "line": 59,
+              "column": 7
+            },
+            {
+              "title": "all internal links should navigate correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-991790bb1cde50040848",
+              "file": "main-site/pages.test.js",
+              "line": 69,
+              "column": 7
+            },
+            {
+              "title": "should display hero section with correct content",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-f225f29ad4f4d79a29ac",
+              "file": "main-site/pages.test.js",
+              "line": 15,
+              "column": 7
+            },
+            {
+              "title": "should display quick stats section",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-23a8e50d50b0f0a6f910",
+              "file": "main-site/pages.test.js",
+              "line": 34,
+              "column": 7
+            },
+            {
+              "title": "should display what is PSH section",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-13807d4f84f9867c8839",
+              "file": "main-site/pages.test.js",
+              "line": 45,
+              "column": 7
+            },
+            {
+              "title": "should display upcoming events section",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-7e96312e18968eb091ed",
+              "file": "main-site/pages.test.js",
+              "line": 59,
+              "column": 7
+            },
+            {
+              "title": "all internal links should navigate correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-824d5b52a5024d23dcb7",
+              "file": "main-site/pages.test.js",
+              "line": 69,
+              "column": 7
+            },
+            {
+              "title": "should display hero section with correct content",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-31a64aff54a50a4b49fb",
+              "file": "main-site/pages.test.js",
+              "line": 15,
+              "column": 7
+            },
+            {
+              "title": "should display quick stats section",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-48aeaf8ff1637c483b13",
+              "file": "main-site/pages.test.js",
+              "line": 34,
+              "column": 7
+            },
+            {
+              "title": "should display what is PSH section",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-985ddf8e29c0e522a29d",
+              "file": "main-site/pages.test.js",
+              "line": 45,
+              "column": 7
+            },
+            {
+              "title": "should display upcoming events section",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-bd778edeac30646314f6",
+              "file": "main-site/pages.test.js",
+              "line": 59,
+              "column": 7
+            },
+            {
+              "title": "all internal links should navigate correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-861bfb2515169f7d3bd2",
+              "file": "main-site/pages.test.js",
+              "line": 69,
+              "column": 7
+            },
+            {
+              "title": "should display hero section with correct content",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-f296ad15c3314356d89b",
+              "file": "main-site/pages.test.js",
+              "line": 15,
+              "column": 7
+            },
+            {
+              "title": "should display quick stats section",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-e817a9bef98acf55efa0",
+              "file": "main-site/pages.test.js",
+              "line": 34,
+              "column": 7
+            },
+            {
+              "title": "should display what is PSH section",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-84564cafb94d0dcdadcb",
+              "file": "main-site/pages.test.js",
+              "line": 45,
+              "column": 7
+            },
+            {
+              "title": "should display upcoming events section",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-9a664d59036af0d8f8bd",
+              "file": "main-site/pages.test.js",
+              "line": 59,
+              "column": 7
+            },
+            {
+              "title": "all internal links should navigate correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-0fdcb9f89fe4b848e759",
+              "file": "main-site/pages.test.js",
+              "line": 69,
+              "column": 7
+            },
+            {
+              "title": "should display hero section with correct content",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Microsoft Edge",
+                  "projectName": "Microsoft Edge",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-deb4c0c3b4e4a1c3aca7",
+              "file": "main-site/pages.test.js",
+              "line": 15,
+              "column": 7
+            },
+            {
+              "title": "should display quick stats section",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Microsoft Edge",
+                  "projectName": "Microsoft Edge",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-39a2162aed8b276c8665",
+              "file": "main-site/pages.test.js",
+              "line": 34,
+              "column": 7
+            },
+            {
+              "title": "should display what is PSH section",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Microsoft Edge",
+                  "projectName": "Microsoft Edge",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-817c468f0246f6019b69",
+              "file": "main-site/pages.test.js",
+              "line": 45,
+              "column": 7
+            },
+            {
+              "title": "should display upcoming events section",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Microsoft Edge",
+                  "projectName": "Microsoft Edge",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-b1a35e9ab4f7104b40cc",
+              "file": "main-site/pages.test.js",
+              "line": 59,
+              "column": 7
+            },
+            {
+              "title": "all internal links should navigate correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Microsoft Edge",
+                  "projectName": "Microsoft Edge",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-3c1ad9f3751c86dc97d5",
+              "file": "main-site/pages.test.js",
+              "line": 69,
+              "column": 7
+            },
+            {
+              "title": "should display hero section with correct content",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Google Chrome",
+                  "projectName": "Google Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-fe4d3163c4d8e7a5cd16",
+              "file": "main-site/pages.test.js",
+              "line": 15,
+              "column": 7
+            },
+            {
+              "title": "should display quick stats section",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Google Chrome",
+                  "projectName": "Google Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-29ebd852fb97bc1d29c7",
+              "file": "main-site/pages.test.js",
+              "line": 34,
+              "column": 7
+            },
+            {
+              "title": "should display what is PSH section",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Google Chrome",
+                  "projectName": "Google Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-edff89986bc2f00c430e",
+              "file": "main-site/pages.test.js",
+              "line": 45,
+              "column": 7
+            },
+            {
+              "title": "should display upcoming events section",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Google Chrome",
+                  "projectName": "Google Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-9a7e7a18a7de25e6c07f",
+              "file": "main-site/pages.test.js",
+              "line": 59,
+              "column": 7
+            },
+            {
+              "title": "all internal links should navigate correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Google Chrome",
+                  "projectName": "Google Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-6347f058130bf75ef290",
+              "file": "main-site/pages.test.js",
+              "line": 69,
+              "column": 7
+            }
+          ]
+        },
+        {
+          "title": "Homepage Responsive Design",
+          "file": "main-site/pages.test.js",
+          "line": 83,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should display correctly on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-baa86664f0cf86847237",
+              "file": "main-site/pages.test.js",
+              "line": 84,
+              "column": 7
+            },
+            {
+              "title": "should display correctly on tablet",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-94e3945ebb82c2f41fbc",
+              "file": "main-site/pages.test.js",
+              "line": 98,
+              "column": 7
+            },
+            {
+              "title": "should display correctly on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-e26f450f462081269261",
+              "file": "main-site/pages.test.js",
+              "line": 84,
+              "column": 7
+            },
+            {
+              "title": "should display correctly on tablet",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-63fb7be5337cd3329ed8",
+              "file": "main-site/pages.test.js",
+              "line": 98,
+              "column": 7
+            },
+            {
+              "title": "should display correctly on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-c783b80eaccd76703ce4",
+              "file": "main-site/pages.test.js",
+              "line": 84,
+              "column": 7
+            },
+            {
+              "title": "should display correctly on tablet",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-4473abcbf1ed58cb4d63",
+              "file": "main-site/pages.test.js",
+              "line": 98,
+              "column": 7
+            },
+            {
+              "title": "should display correctly on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-28266a05b296b380ae5c",
+              "file": "main-site/pages.test.js",
+              "line": 84,
+              "column": 7
+            },
+            {
+              "title": "should display correctly on tablet",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-65dcbc609f0d41f63820",
+              "file": "main-site/pages.test.js",
+              "line": 98,
+              "column": 7
+            },
+            {
+              "title": "should display correctly on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Microsoft Edge",
+                  "projectName": "Microsoft Edge",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-7e457c1f43685f2ac110",
+              "file": "main-site/pages.test.js",
+              "line": 84,
+              "column": 7
+            },
+            {
+              "title": "should display correctly on tablet",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Microsoft Edge",
+                  "projectName": "Microsoft Edge",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-a2c55ae66be519e15b16",
+              "file": "main-site/pages.test.js",
+              "line": 98,
+              "column": 7
+            },
+            {
+              "title": "should display correctly on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Google Chrome",
+                  "projectName": "Google Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-22fac60a89598b7906ed",
+              "file": "main-site/pages.test.js",
+              "line": 84,
+              "column": 7
+            },
+            {
+              "title": "should display correctly on tablet",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Google Chrome",
+                  "projectName": "Google Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5be22db41aa35e357d75-7c65003da9bfa7c8d993",
+              "file": "main-site/pages.test.js",
+              "line": 98,
+              "column": 7
+            }
+          ]
+        }
+      ]
     }
   ],
+  "errors": [],
   "stats": {
-    "startTime": "2025-06-25T21:49:22.669Z",
-    "duration": 124875.576,
-    "expected": 0,
-    "skipped": 0,
-    "unexpected": 0,
+    "startTime": "2025-06-25T23:56:08.378Z",
+    "duration": 21950.221,
+    "expected": 10,
+    "skipped": 151,
+    "unexpected": 1,
     "flaky": 0
   }
 }
