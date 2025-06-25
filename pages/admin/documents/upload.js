@@ -88,10 +88,21 @@ export default function UploadDocuments() {
         body: uploadData
       });
 
-      const uploadResult = await uploadResponse.json();
+      let uploadResult;
+      try {
+        uploadResult = await uploadResponse.json();
+      } catch (e) {
+        console.error('Failed to parse response:', e);
+        throw new Error('Server error - invalid response format');
+      }
 
       if (!uploadResponse.ok) {
-        throw new Error(uploadResult.message || 'Failed to upload file');
+        throw new Error(uploadResult?.message || 'Failed to upload file');
+      }
+
+      // If blob storage is not configured, show warning but continue
+      if (uploadResult.warning) {
+        alert(uploadResult.warning);
       }
 
       // Create document record
@@ -111,7 +122,13 @@ export default function UploadDocuments() {
         })
       });
 
-      const docResult = await docResponse.json();
+      let docResult;
+      try {
+        docResult = await docResponse.json();
+      } catch (e) {
+        console.error('Failed to parse document response:', e);
+        throw new Error('Failed to create document record - invalid response');
+      }
 
       if (!docResponse.ok) {
         throw new Error(docResult.message || 'Failed to create document record');
