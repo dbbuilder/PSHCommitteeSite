@@ -18,7 +18,12 @@ export default function ViewSubmission() {
 
   const checkAuth = async () => {
     try {
-      const response = await fetch('/api/auth/verify');
+      const token = localStorage.getItem('adminToken');
+      const response = await fetch('/api/auth/verify', {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
       if (!response.ok) {
         router.push('/admin/login');
       }
