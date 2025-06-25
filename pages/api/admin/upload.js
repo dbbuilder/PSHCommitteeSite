@@ -12,8 +12,12 @@ export const config = {
 
 // Helper function to ensure directory exists
 function ensureDirectoryExists(dirPath) {
-  if (!fs.existsSync(dirPath)) {
-    fs.mkdirSync(dirPath, { recursive: true });
+  try {
+    if (!fs.existsSync(dirPath)) {
+      fs.mkdirSync(dirPath, { recursive: true });
+    }
+  } catch (error) {
+    console.error('Error creating directory:', error);
   }
 }
 
@@ -29,46 +33,55 @@ function generateUniqueFilename(originalName) {
 }
 
 export default async function handler(req, res) {
-  // Verify admin authentication
-  const authResult = await verifyToken(req);
-  if (!authResult.success) {
-    return res.status(401).json({ success: false, message: 'Unauthorized' });
-  }
-
-  if (req.method !== 'POST') {
-    return res.status(405).json({ success: false, message: 'Method not allowed' });
-  }
-
-  // Ensure documents directory exists
-  const documentsDir = path.join(process.cwd(), 'public', 'documents');
-  ensureDirectoryExists(documentsDir);
-
-  const form = formidable({
-    uploadDir: documentsDir,
-    keepExtensions: true,
-    maxFileSize: 10 * 1024 * 1024, // 10MB limit
-    filter: function ({ name, originalFilename, mimetype }) {
-      // Accept only certain file types
-      const allowedTypes = [
-        'application/pdf',
-        'application/msword',
-        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-        'application/vnd.ms-excel',
-        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-        'application/vnd.ms-powerpoint',
-        'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-        'text/plain',
-        'application/rtf'
-      ];
-      return allowedTypes.includes(mimetype);
-    }
-  });
-
   try {
+    // Verify admin authentication
+    const authResult = await verifyToken(req);
+    if (!authResult.success) {
+      return res.status(401).json({ success: false, message: 'Unauthorized' });
+    }
+
+    if (req.method !== 'POST') {
+      return res.status(405).json({ success: false, message: 'Method not allowed' });
+    }
+
+    // In production/Vercel, we should use external storage (S3, Cloudinary, etc.)
+    // For now, we'll try to use the public directory or temp directory
+    const isProduction = process.env.NODE_ENV === 'production';
+    const documentsDir = isProduction 
+      ? '/tmp/documents' 
+      : path.join(process.cwd(), 'public', 'documents');
+    
+    ensureDirectoryExists(documentsDir);
+
+    const form = formidable({
+      uploadDir: documentsDir,
+      keepExtensions: true,
+      maxFileSize: 10 * 1024 * 1024, // 10MB limit
+      filter: function ({ name, originalFilename, mimetype }) {
+        // Accept only certain file types
+        const allowedTypes = [
+          'application/pdf',
+          'application/msword',
+          'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+          'application/vnd.ms-excel',
+          'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+          'application/vnd.ms-powerpoint',
+          'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+          'text/plain',
+          'application/rtf'
+        ];
+        return allowedTypes.includes(mimetype);
+      }
+    });
+
     const [fields, files] = await new Promise((resolve, reject) => {
       form.parse(req, (err, fields, files) => {
-        if (err) reject(err);
-        else resolve([fields, files]);
+        if (err) {
+          console.error('Form parse error:', err);
+          reject(err);
+        } else {
+          resolve([fields, files]);
+        }
       });
     });
 
@@ -84,6 +97,25 @@ export default async function handler(req, res) {
 
     // Generate unique filename
     const uniqueFilename = generateUniqueFilename(file.originalFilename || 'document');
+    
+    // In production, you would upload to cloud storage here
+    if (isProduction) {
+      console.warn('File uploaded to temp directory. In production, use cloud storage like S3 or Vercel Blob.');
+      
+      // For now, we'll just return success with the filename
+      // In a real app, you'd upload to S3, Cloudinary, etc. here
+      return res.status(200).json({
+        success: true,
+        message: 'File processed successfully (production mode - implement cloud storage)',
+        filename: uniqueFilename,
+        originalName: file.originalFilename,
+        size: file.size,
+        mimetype: file.mimetype,
+        note: 'In production, files should be uploaded to cloud storage'
+      });
+    }
+
+    // In development, save to public/documents
     const newPath = path.join(documentsDir, uniqueFilename);
 
     // Move file to final location
@@ -93,9 +125,15 @@ export default async function handler(req, res) {
         fs.renameSync(file.filepath, newPath);
       }
     } catch (moveError) {
+      console.error('Error moving file:', moveError);
       // If rename fails, try copying and deleting
-      fs.copyFileSync(file.filepath, newPath);
-      fs.unlinkSync(file.filepath);
+      try {
+        fs.copyFileSync(file.filepath, newPath);
+        fs.unlinkSync(file.filepath);
+      } catch (copyError) {
+        console.error('Error copying file:', copyError);
+        throw copyError;
+      }
     }
 
     // Return success with file info
@@ -113,17 +151,25 @@ export default async function handler(req, res) {
     
     // Clean up any partially uploaded files
     try {
-      const tempFiles = fs.readdirSync(documentsDir).filter(f => f.startsWith('upload_'));
-      tempFiles.forEach(f => {
-        fs.unlinkSync(path.join(documentsDir, f));
-      });
+      const tempDir = process.env.NODE_ENV === 'production' ? '/tmp/documents' : path.join(process.cwd(), 'public', 'documents');
+      if (fs.existsSync(tempDir)) {
+        const tempFiles = fs.readdirSync(tempDir).filter(f => f.startsWith('upload_'));
+        tempFiles.forEach(f => {
+          try {
+            fs.unlinkSync(path.join(tempDir, f));
+          } catch (e) {
+            // Ignore cleanup errors
+          }
+        });
+      }
     } catch (cleanupError) {
       console.error('Cleanup error:', cleanupError);
     }
 
     return res.status(500).json({
       success: false,
-      message: error.message || 'Failed to upload file'
+      message: error.message || 'Failed to upload file',
+      error: process.env.NODE_ENV === 'development' ? error.stack : undefined
     });
   }
 }

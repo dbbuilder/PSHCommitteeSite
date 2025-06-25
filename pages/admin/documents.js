@@ -239,6 +239,14 @@ export default function Documents() {
             </div>
           )}
 
+          {/* Production Warning */}
+          {process.env.NODE_ENV === 'production' && (
+            <div className="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded mb-4">
+              <strong>Note:</strong> Document metadata is stored in memory and will reset on each deployment. 
+              For production use, implement a database solution.
+            </div>
+          )}
+
           {/* Documents List */}
           <div className="bg-white rounded-lg shadow">
             {filteredDocuments.length === 0 ? (

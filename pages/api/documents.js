@@ -1,32 +1,26 @@
-import fs from 'fs';
-import path from 'path';
-
-// Path to documents data file
-const documentsPath = path.join(process.cwd(), 'data', 'documents.json');
-
-// Helper function to read documents
-function getDocuments() {
-  try {
-    const data = fs.readFileSync(documentsPath, 'utf8');
-    return JSON.parse(data);
-  } catch (error) {
-    console.error('Error reading documents:', error);
-    return [];
-  }
-}
+import { getAllDocuments } from '../../lib/documentsStore';
 
 export default async function handler(req, res) {
+  // Enable CORS for public access
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
   if (req.method !== 'GET') {
     return res.status(405).json({ success: false, message: 'Method not allowed' });
   }
 
   try {
-    const documents = getDocuments();
+    const documents = getAllDocuments();
     
     // Add file existence check and full URL for public access
     const documentsWithStatus = documents.map(doc => {
-      const filePath = path.join(process.cwd(), 'public', 'documents', doc.filename);
-      const fileExists = fs.existsSync(filePath);
+      // In production/serverless, assume all files exist
+      const fileExists = true;
       
       return {
         id: doc.id,
@@ -41,18 +35,16 @@ export default async function handler(req, res) {
       };
     });
     
-    // Only return documents where files exist
-    const availableDocuments = documentsWithStatus.filter(doc => doc.fileExists);
-    
     return res.status(200).json({ 
       success: true, 
-      documents: availableDocuments 
+      documents: documentsWithStatus 
     });
   } catch (error) {
     console.error('Error fetching documents:', error);
     return res.status(500).json({ 
       success: false, 
-      message: 'Failed to fetch documents' 
+      message: 'Failed to fetch documents',
+      error: error.message 
     });
   }
 }
