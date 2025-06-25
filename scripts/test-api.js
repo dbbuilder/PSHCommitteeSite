@@ -22,7 +22,7 @@ try {
   console.log('Using default admin credentials')
 }
 
-const baseUrl = 'http://localhost:3000'
+const baseUrl = process.env.PORT ? `http://localhost:${process.env.PORT}` : 'http://localhost:3000'
 
 async function getAuthToken() {
   try {
