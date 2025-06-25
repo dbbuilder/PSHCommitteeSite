@@ -1,11 +1,14 @@
 // Simple test script to verify document APIs
+const TEST_PORT = process.env.PORT || 12500;
+const BASE_URL = `http://localhost:${TEST_PORT}`;
+
 const testDocumentAPIs = async () => {
-  console.log('Testing Document APIs...\n');
+  console.log(`Testing Document APIs on port ${TEST_PORT}...\n`);
   
   // Test public documents API
   console.log('1. Testing Public Documents API (/api/documents)');
   try {
-    const response = await fetch('http://localhost:3004/api/documents');
+    const response = await fetch(`${BASE_URL}/api/documents`);
     const data = await response.json();
     console.log(`   ✅ Status: ${response.status}`);
     console.log(`   ✅ Success: ${data.success}`);
@@ -17,7 +20,7 @@ const testDocumentAPIs = async () => {
   console.log('\n2. Testing Admin Documents API (/api/admin/documents)');
   // This should fail without auth
   try {
-    const response = await fetch('http://localhost:3004/api/admin/documents');
+    const response = await fetch(`${BASE_URL}/api/admin/documents`);
     const data = await response.json();
     console.log(`   ✅ Status: ${response.status} (Should be 401)`);
     console.log(`   ✅ Unauthorized: ${!data.success}`);
@@ -28,7 +31,7 @@ const testDocumentAPIs = async () => {
   console.log('\n3. Testing Upload API (/api/admin/upload)');
   // This should fail without auth
   try {
-    const response = await fetch('http://localhost:3004/api/admin/upload', {
+    const response = await fetch(`${BASE_URL}/api/admin/upload`, {
       method: 'POST'
     });
     const data = await response.json();

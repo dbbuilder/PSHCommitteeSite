@@ -8,15 +8,23 @@ A professional website for the Washington State Permanent Supportive Housing (PS
 # Install dependencies
 npm install
 
-# Run development server
+# Run development server (port 12500)
 npm run dev
+
+# Or use the dev helper (Windows)
+dev.bat
 
 # Build for production
 npm run build
 
 # Start production server
 npm start
+
+# Run tests
+npm run test
 ```
+
+**Note**: Development server runs on port 12500 to avoid conflicts. See [PORT_CONFIGURATION.md](PORT_CONFIGURATION.md) for details.
 
 ## Project Structure
 
