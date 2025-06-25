@@ -119,7 +119,6 @@ export default function UploadDocuments() {
                 </ul>
               </div>
             )}
-            </div>
 
             {/* Category Selection */}
             <div className="mb-6">
