@@ -9,6 +9,7 @@ module.exports = {
     extend: {
       colors: {
         'wa-blue': '#003366',
+        'wa-blue-dark': '#002244',
         'wa-green': '#6D972D',
         'wa-gray': '#f5f5f5',
         'wa-dark-gray': '#333333',

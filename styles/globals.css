@@ -85,3 +85,37 @@
 .spinner {
   @apply inline-block w-8 h-8 border-4 border-gray-200 border-t-wa-blue rounded-full animate-spin;
 }
+
+
+/* Focus styles for better accessibility */
+*:focus {
+  @apply outline-none ring-2 ring-wa-green ring-offset-2;
+}
+
+/* Safari-specific focus styles */
+@supports (-webkit-touch-callout: none) {
+  *:focus {
+    @apply outline-none ring-4 ring-wa-green ring-offset-2;
+  }
+  
+  button:focus,
+  a:focus {
+    @apply outline-none ring-4 ring-wa-green ring-offset-2;
+  }
+}
+
+/* Edge mobile viewport fix */
+@media screen and (max-width: 767px) {
+  .md\:hidden {
+    display: block !important;
+  }
+  
+  .hidden.md\:flex {
+    display: none !important;
+  }
+}
+
+/* Ensure mobile menu is scrollable */
+.mobile-menu-scroll {
+  -webkit-overflow-scrolling: touch;
+}

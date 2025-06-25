@@ -1,4 +1,4 @@
-// Admin API for managing calendar events
+// Admin API for managing calendar events with correct data structure
 import fs from 'fs'
 import path from 'path'
 import { withAuth, withCORS } from '../../../lib/middleware'
@@ -9,7 +9,9 @@ const eventsPath = path.join(process.cwd(), 'data', 'events.json')
 function readEventsData() {
   try {
     const data = fs.readFileSync(eventsPath, 'utf8')
-    return JSON.parse(data)
+    const parsed = JSON.parse(data)
+    // Handle both array and object with events property
+    return parsed.events || parsed || []
   } catch (error) {
     console.error('Error reading events data:', error)
     return []
@@ -17,8 +19,10 @@ function readEventsData() {
 }
 
 // Helper function to write events data
-function writeEventsData(data) {
+function writeEventsData(events) {
   try {
+    // Maintain the original structure with events wrapper
+    const data = { events }
     fs.writeFileSync(eventsPath, JSON.stringify(data, null, 2))
     return true
   } catch (error) {
@@ -28,6 +32,11 @@ function writeEventsData(data) {
 }
 
 async function handler(req, res) {
+  // Debug logging
+  console.log('[Events API] Request method:', req.method)
+  console.log('[Events API] Request headers:', req.headers)
+  console.log('[Events API] User:', req.user)
+  
   const { method, body, query } = req
   switch (method) {
     case 'GET':
@@ -35,7 +44,7 @@ async function handler(req, res) {
       const events = readEventsData()
       
       if (query.id) {
-        const event = events.find(e => e.id === parseInt(query.id))
+        const event = events.find(e => e.id === query.id || e.id === parseInt(query.id))
         if (event) {
           return res.status(200).json({ success: true, data: event })
         } else {
@@ -46,6 +55,8 @@ async function handler(req, res) {
       return res.status(200).json({ success: true, data: events })
 
     case 'POST':
+      console.log('[Events API] POST body:', body)
+      
       // Create new event
       const allEvents = readEventsData()
       
@@ -57,14 +68,17 @@ async function handler(req, res) {
         })
       }
       
-      // Generate new event
+      // Generate new event with unique ID
+      const newId = Date.now().toString()
       const newEvent = {
-        id: allEvents.length > 0 ? Math.max(...allEvents.map(e => e.id)) + 1 : 1,
+        id: newId,
         title: body.title,
         description: body.description || '',
         date: body.date,
         time: body.time,
         location: body.location,
+        address: body.address || '',
+        registrationLink: body.registrationLink || '',
         createdAt: new Date().toISOString()
       }      
       allEvents.push(newEvent)
@@ -82,7 +96,7 @@ async function handler(req, res) {
       }
       
       const eventsToUpdate = readEventsData()
-      const eventIndex = eventsToUpdate.findIndex(e => e.id === parseInt(query.id))
+      const eventIndex = eventsToUpdate.findIndex(e => e.id === query.id || e.id === parseInt(query.id))
       
       if (eventIndex === -1) {
         return res.status(404).json({ success: false, message: 'Event not found' })
@@ -101,7 +115,6 @@ async function handler(req, res) {
       } else {
         return res.status(500).json({ success: false, message: 'Failed to update event' })
       }
-
     case 'DELETE':
       // Delete event
       if (!query.id) {
@@ -109,7 +122,7 @@ async function handler(req, res) {
       }
       
       const eventsToDelete = readEventsData()
-      const filteredEvents = eventsToDelete.filter(e => e.id !== parseInt(query.id))
+      const filteredEvents = eventsToDelete.filter(e => e.id !== query.id && e.id !== parseInt(query.id))
       
       if (filteredEvents.length === eventsToDelete.length) {
         return res.status(404).json({ success: false, message: 'Event not found' })
@@ -127,5 +140,5 @@ async function handler(req, res) {
   }
 }
 
-// Apply authentication middleware
+// Apply authentication middleware with CORS
 export default withCORS(withAuth(handler))

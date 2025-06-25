@@ -55,7 +55,7 @@ export default function BlogListing() {
     <Layout title="Blog">
       <div className="bg-wa-blue text-white py-12">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-bold text-white">News & Updates</h1>
+          <h1 className="text-4xl font-bold text-white">Blog</h1>
           <p className="text-xl mt-4 text-gray-100">
             Stay informed about the latest developments in permanent supportive housing
           </p>

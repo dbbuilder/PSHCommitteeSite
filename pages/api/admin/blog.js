@@ -1,4 +1,4 @@
-// Enhanced blog API with CRUD operations
+// Enhanced blog API with CRUD operations and correct data structure
 import fs from 'fs'
 import path from 'path'
 import { withAuth, withCORS } from '../../../lib/middleware'
@@ -9,7 +9,9 @@ const blogPath = path.join(process.cwd(), 'data', 'blog.json')
 function readBlogData() {
   try {
     const data = fs.readFileSync(blogPath, 'utf8')
-    return JSON.parse(data)
+    const parsed = JSON.parse(data)
+    // Handle both array and object with posts property
+    return parsed.posts || parsed || []
   } catch (error) {
     console.error('Error reading blog data:', error)
     return []
@@ -17,8 +19,10 @@ function readBlogData() {
 }
 
 // Helper function to write blog data
-function writeBlogData(data) {
+function writeBlogData(posts) {
   try {
+    // Maintain the original structure with posts wrapper
+    const data = { posts }
     fs.writeFileSync(blogPath, JSON.stringify(data, null, 2))
     return true
   } catch (error) {
@@ -32,9 +36,14 @@ function generateSlug(title) {
   return title
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)/g, '')}
-
+    .replace(/(^-|-$)/g, '')
+}
 async function handler(req, res) {
+  // Debug logging
+  console.log('[Blog API] Request method:', req.method)
+  console.log('[Blog API] Request headers:', req.headers)
+  console.log('[Blog API] User:', req.user)
+  
   const { method, body, query } = req
 
   switch (method) {
@@ -43,7 +52,7 @@ async function handler(req, res) {
       const posts = readBlogData()
       
       if (query.id) {
-        const post = posts.find(p => p.id === parseInt(query.id))
+        const post = posts.find(p => p.id === query.id || p.id === parseInt(query.id))
         if (post) {
           return res.status(200).json({ success: true, data: post })
         } else {
@@ -54,6 +63,8 @@ async function handler(req, res) {
       return res.status(200).json({ success: true, data: posts })
 
     case 'POST':
+      console.log('[Blog API] POST body:', body)
+      
       // Create new post
       const allPosts = readBlogData()
       
@@ -64,14 +75,16 @@ async function handler(req, res) {
           message: 'Title and content are required'
         })
       }      
-      // Generate new post
+      // Generate new post with unique ID
+      const newId = Date.now().toString()
       const newPost = {
-        id: allPosts.length > 0 ? Math.max(...allPosts.map(p => p.id)) + 1 : 1,
+        id: newId,
         title: body.title,
         slug: body.slug || generateSlug(body.title),
         excerpt: body.excerpt || body.content.substring(0, 150) + '...',
         content: body.content,
-        author: body.author || req.user.username,
+        author: body.author || (req.user ? req.user.username : 'admin'),
+        date: new Date().toISOString(),
         publishedAt: body.publishedAt || new Date().toISOString().split('T')[0],
         tags: body.tags || [],
         isDraft: body.isDraft || false
@@ -89,10 +102,10 @@ async function handler(req, res) {
       // Update existing post
       if (!query.id) {
         return res.status(400).json({ success: false, message: 'Post ID is required' })
-      }
-      
+      }      
       const postsToUpdate = readBlogData()
-      const postIndex = postsToUpdate.findIndex(p => p.id === parseInt(query.id))      
+      const postIndex = postsToUpdate.findIndex(p => p.id === query.id || p.id === parseInt(query.id))
+      
       if (postIndex === -1) {
         return res.status(404).json({ success: false, message: 'Post not found' })
       }
@@ -119,7 +132,7 @@ async function handler(req, res) {
       }
       
       const postsToDelete = readBlogData()
-      const filteredPosts = postsToDelete.filter(p => p.id !== parseInt(query.id))
+      const filteredPosts = postsToDelete.filter(p => p.id !== query.id && p.id !== parseInt(query.id))
       
       if (filteredPosts.length === postsToDelete.length) {
         return res.status(404).json({ success: false, message: 'Post not found' })
@@ -137,5 +150,5 @@ async function handler(req, res) {
   }
 }
 
-// Apply authentication middleware
+// Apply authentication middleware with CORS
 export default withCORS(withAuth(handler))
