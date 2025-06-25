@@ -239,11 +239,13 @@ export default function Documents() {
             </div>
           )}
 
-          {/* Production Warning */}
-          {process.env.NODE_ENV === 'production' && (
+          {/* Blob Storage Info */}
+          {!process.env.BLOB_READ_WRITE_TOKEN && (
             <div className="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded mb-4">
-              <strong>Note:</strong> Document metadata is stored in memory and will reset on each deployment. 
-              For production use, implement a database solution.
+              <strong>Setup Required:</strong> To enable file uploads and persistent storage, add BLOB_READ_WRITE_TOKEN to your Vercel environment variables.
+              <a href="https://vercel.com/docs/storage/vercel-blob" className="underline ml-2" target="_blank" rel="noopener noreferrer">
+                Learn more
+              </a>
             </div>
           )}
 

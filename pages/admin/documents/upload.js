@@ -106,7 +106,8 @@ export default function UploadDocuments() {
           description: formData.description,
           category: formData.category,
           filename: uploadResult.filename,
-          fileSize: formatFileSize(file.size)
+          fileSize: formatFileSize(file.size),
+          blobUrl: uploadResult.blobUrl // Add blob URL to document record
         })
       });
 

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@googlemaps/react-wrapper": "^1.1.35",
+    "@vercel/blob": "^1.1.1",
     "bcryptjs": "^2.4.3",
     "formidable": "^3.5.4",
     "jsonwebtoken": "^9.0.2",

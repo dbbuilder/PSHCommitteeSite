@@ -1,4 +1,4 @@
-import { getAllDocuments } from '../../lib/documentsStore';
+import { getAllDocuments, initializeMetadata } from '../../lib/blobStorage';
 
 export default async function handler(req, res) {
   // Enable CORS for public access
@@ -15,36 +15,21 @@ export default async function handler(req, res) {
   }
 
   try {
-    const documents = getAllDocuments();
+    // Initialize metadata on first request if needed
+    await initializeMetadata();
     
-    // Add file existence check and full URL for public access
-    const documentsWithStatus = documents.map(doc => {
-      // In production/serverless, assume all files exist
-      const fileExists = true;
-      
-      return {
-        id: doc.id,
-        title: doc.title,
-        description: doc.description,
-        category: doc.category,
-        filename: doc.filename,
-        fileSize: doc.fileSize,
-        uploadedAt: doc.uploadedAt,
-        downloadUrl: `/documents/${doc.filename}`,
-        fileExists
-      };
-    });
+    const documents = await getAllDocuments();
     
     return res.status(200).json({ 
       success: true, 
-      documents: documentsWithStatus 
+      documents: documents 
     });
   } catch (error) {
     console.error('Error fetching documents:', error);
     return res.status(500).json({ 
       success: false, 
       message: 'Failed to fetch documents',
-      error: error.message 
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
   }
 }
