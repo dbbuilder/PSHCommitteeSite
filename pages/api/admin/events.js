@@ -1,56 +1,55 @@
-// Events API - Simplified for Vercel
-import fs from 'fs'
-import path from 'path'
+// Events API - Vercel Compatible
 import jwt from 'jsonwebtoken'
 
 const JWT_SECRET = process.env.JWT_SECRET || 'psh-advisory-committee-secret-key-change-in-production'
 
-export default function handler(req, res) {
-  // Handle CORS
-  res.setHeader('Access-Control-Allow-Credentials', 'true')
+export default async function handler(req, res) {
+  // Set CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*')
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
-  res.setHeader('Access-Control-Allow-Headers', 'Authorization, Content-Type')
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
   
+  // Handle OPTIONS request for CORS preflight
   if (req.method === 'OPTIONS') {
-    return res.status(200).end()
+    res.status(200).end()
+    return
   }
 
-  // Verify auth
+  // Check authentication
   const authHeader = req.headers.authorization
-  if (!authHeader || !authHeader.startsWith('Bearer ')) {
-    return res.status(401).json({ success: false, message: 'Unauthorized' })
+  if (!authHeader?.startsWith('Bearer ')) {
+    res.status(401).json({ success: false, message: 'Unauthorized' })
+    return
   }
 
   try {
     const token = authHeader.substring(7)
     jwt.verify(token, JWT_SECRET)
   } catch (error) {
-    return res.status(401).json({ success: false, message: 'Invalid token' })
+    res.status(401).json({ success: false, message: 'Invalid token' })
+    return
   }
 
+  // Import fs here to avoid issues
+  const fs = require('fs')
+  const path = require('path')
   const eventsPath = path.join(process.cwd(), 'data', 'events.json')
-  
-  if (req.method === 'GET') {
-    try {
+
+  try {
+    if (req.method === 'GET') {
       const data = fs.readFileSync(eventsPath, 'utf8')
       const parsed = JSON.parse(data)
       const events = parsed.events || []
-      return res.status(200).json({ success: true, data: events })
-    } catch (error) {
-      return res.status(500).json({ success: false, message: 'Error reading events' })
+      res.status(200).json({ success: true, data: events })
+      return
     }
-  }
-  
-  if (req.method === 'POST') {
-    try {
+
+    if (req.method === 'POST') {
       const { title, description, date, time, location } = req.body
       
       if (!title || !date || !time || !location) {
-        return res.status(400).json({ 
-          success: false, 
-          message: 'Title, date, time, and location are required' 
-        })
+        res.status(400).json({ success: false, message: 'Title, date, time, and location are required' })
+        return
       }
       
       const data = fs.readFileSync(eventsPath, 'utf8')
@@ -72,24 +71,13 @@ export default function handler(req, res) {
       events.push(newEvent)
       fs.writeFileSync(eventsPath, JSON.stringify({ events }, null, 2))
       
-      return res.status(201).json({ success: true, data: newEvent })
-    } catch (error) {
-      console.error('Error creating event:', error)
-      return res.status(500).json({ 
-        success: false, 
-        message: 'Error creating event' 
-      })
+      res.status(201).json({ success: true, data: newEvent })
+      return
     }
-  }
-  
-  return res.status(405).json({ 
-    success: false, 
-    message: `Method ${req.method} not allowed` 
-  })
-}
 
-export const config = {
-  api: {
-    bodyParser: true,
-  },
+    res.status(405).json({ success: false, message: 'Method not allowed' })
+  } catch (error) {
+    console.error('Events API error:', error)
+    res.status(500).json({ success: false, message: 'Internal server error' })
+  }
 }

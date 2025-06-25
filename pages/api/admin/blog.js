@@ -1,56 +1,55 @@
-// Blog API - Simplified for Vercel
-import fs from 'fs'
-import path from 'path'
+// Blog API - Vercel Compatible
 import jwt from 'jsonwebtoken'
 
 const JWT_SECRET = process.env.JWT_SECRET || 'psh-advisory-committee-secret-key-change-in-production'
 
-export default function handler(req, res) {
-  // Handle CORS
-  res.setHeader('Access-Control-Allow-Credentials', 'true')
+export default async function handler(req, res) {
+  // Set CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*')
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
-  res.setHeader('Access-Control-Allow-Headers', 'Authorization, Content-Type')
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
   
+  // Handle OPTIONS request for CORS preflight
   if (req.method === 'OPTIONS') {
-    return res.status(200).end()
+    res.status(200).end()
+    return
   }
 
-  // Verify auth
+  // Check authentication
   const authHeader = req.headers.authorization
-  if (!authHeader || !authHeader.startsWith('Bearer ')) {
-    return res.status(401).json({ success: false, message: 'Unauthorized' })
+  if (!authHeader?.startsWith('Bearer ')) {
+    res.status(401).json({ success: false, message: 'Unauthorized' })
+    return
   }
 
   try {
     const token = authHeader.substring(7)
     jwt.verify(token, JWT_SECRET)
   } catch (error) {
-    return res.status(401).json({ success: false, message: 'Invalid token' })
+    res.status(401).json({ success: false, message: 'Invalid token' })
+    return
   }
 
+  // Import fs here to avoid issues
+  const fs = require('fs')
+  const path = require('path')
   const blogPath = path.join(process.cwd(), 'data', 'blog.json')
-  
-  if (req.method === 'GET') {
-    try {
+
+  try {
+    if (req.method === 'GET') {
       const data = fs.readFileSync(blogPath, 'utf8')
       const parsed = JSON.parse(data)
       const posts = parsed.posts || []
-      return res.status(200).json({ success: true, data: posts })
-    } catch (error) {
-      return res.status(500).json({ success: false, message: 'Error reading posts' })
+      res.status(200).json({ success: true, data: posts })
+      return
     }
-  }
-  
-  if (req.method === 'POST') {
-    try {
+
+    if (req.method === 'POST') {
       const { title, content, excerpt, tags, isDraft } = req.body
       
       if (!title || !content) {
-        return res.status(400).json({ 
-          success: false, 
-          message: 'Title and content are required' 
-        })
+        res.status(400).json({ success: false, message: 'Title and content are required' })
+        return
       }
       
       const data = fs.readFileSync(blogPath, 'utf8')
@@ -73,24 +72,13 @@ export default function handler(req, res) {
       posts.push(newPost)
       fs.writeFileSync(blogPath, JSON.stringify({ posts }, null, 2))
       
-      return res.status(201).json({ success: true, data: newPost })
-    } catch (error) {
-      console.error('Error creating post:', error)
-      return res.status(500).json({ 
-        success: false, 
-        message: 'Error creating post' 
-      })
+      res.status(201).json({ success: true, data: newPost })
+      return
     }
-  }
-  
-  return res.status(405).json({ 
-    success: false, 
-    message: `Method ${req.method} not allowed` 
-  })
-}
 
-export const config = {
-  api: {
-    bodyParser: true,
-  },
+    res.status(405).json({ success: false, message: 'Method not allowed' })
+  } catch (error) {
+    console.error('Blog API error:', error)
+    res.status(500).json({ success: false, message: 'Internal server error' })
+  }
 }
