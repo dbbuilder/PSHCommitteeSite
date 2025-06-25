@@ -212,7 +212,7 @@ export default function Contact() {
                       rel="noopener noreferrer"
                       className="text-wa-blue hover:text-wa-green"
                     >
-                      commerce.wa.gov
+                      Permanent Supportive Housing Advisory Committee – Washington State Department of Commerce
                     </a>
                   </p>
                 </div>

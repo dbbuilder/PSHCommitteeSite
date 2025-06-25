@@ -41,7 +41,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
-                  Commerce PSH Program
+                  Permanent Supportive Housing Advisory Committee – Washington State Department of Commerce
                 </a>
               </li>
             </ul>
