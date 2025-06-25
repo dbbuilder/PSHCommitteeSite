@@ -195,15 +195,6 @@ export default function Contact() {
                 </div>
                 
                 <div>
-                  <h4 className="font-medium">Phone:</h4>
-                  <p className="text-gray-600">
-                    <a href="tel:360-725-4000" className="text-wa-blue hover:text-wa-green">
-                      360-725-4000
-                    </a> (TTY 360-586-0772)
-                  </p>
-                </div>
-
-                <div>
                   <h4 className="font-medium">Email:</h4>
                   <p className="text-gray-600">
                     <a href="mailto:pshadcom@gmail.com" className="text-wa-blue hover:text-wa-green">

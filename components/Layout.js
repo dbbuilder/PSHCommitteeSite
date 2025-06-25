@@ -1,8 +1,13 @@
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import Header from './Header'
+import AdminHeader from './AdminHeader'
 import Footer from './Footer'
 
 export default function Layout({ children, title = 'PSH Advisory Committee' }) {
+  const router = useRouter()
+  const isAdminPage = router.pathname.startsWith('/admin') && router.pathname !== '/admin/login'
+  
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <Head>
@@ -12,7 +17,7 @@ export default function Layout({ children, title = 'PSH Advisory Committee' }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       
-      <Header />
+      {isAdminPage ? <AdminHeader /> : <Header />}
       
       <main className="flex-grow">
         {children}

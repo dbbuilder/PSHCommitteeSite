@@ -52,18 +52,13 @@ export default function Footer() {
             <h3 className="text-xl font-semibold mb-4 text-white">Contact Information</h3>
             <div className="text-sm text-gray-300 space-y-2">
               <p>PSH Advisory Committee</p>
-              <p>Washington State Department of Commerce</p>
+              <p>c/o Washington State Department of Commerce</p>
               <p>1011 Plum St. SE</p>
               <p>P.O. Box 42525</p>
               <p>Olympia, WA 98504-2525</p>
               <p className="mt-2">
                 Email: <a href="mailto:pshadcom@gmail.com" className="hover:text-white transition-colors">
                   pshadcom@gmail.com
-                </a>
-              </p>
-              <p className="mt-2">
-                Phone: <a href="tel:360-725-4000" className="hover:text-white transition-colors">
-                  360-725-4000
                 </a>
               </p>
             </div>
