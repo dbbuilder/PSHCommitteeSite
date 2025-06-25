@@ -101,7 +101,9 @@ export default function UploadDocuments() {
               <p className="mt-2 text-sm text-gray-500">
                 Accepted formats: PDF, Word, Excel, PowerPoint, Text files
               </p>
-            }            {/* Selected Files Display */}
+            </div>
+            
+            {/* Selected Files Display */}
             {files.length > 0 && (
               <div className="mt-3 p-3 bg-gray-50 rounded">
                 <p className="text-sm font-medium text-gray-700 mb-2">Selected files:</p>
@@ -140,7 +142,9 @@ export default function UploadDocuments() {
                 <option value="forms">Forms & Applications</option>
                 <option value="resources">Resources</option>
               </select>
-            </div>            {/* Description */}
+            </div>
+            
+            {/* Description */}
             <div className="mb-6">
               <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
                 Description
