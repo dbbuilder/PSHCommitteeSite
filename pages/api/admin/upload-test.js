@@ -14,8 +14,13 @@ export default async function handler(req, res) {
   }
 
   try {
+    console.log('Upload test endpoint called');
+    console.log('Headers:', req.headers.authorization ? 'Bearer token present' : 'No auth header');
+    
     // Verify admin authentication
     const authResult = verifyAdminAuth(req);
+    console.log('Auth result:', authResult);
+    
     if (!authResult.success) {
       return res.status(401).json({ 
         success: false, 

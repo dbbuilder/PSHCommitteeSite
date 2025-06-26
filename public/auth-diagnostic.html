@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auth Diagnostic Tool</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .section {
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+    }
+    input {
+      padding: 8px;
+      margin: 5px;
+      width: 200px;
+    }
+    button {
+      padding: 8px 15px;
+      margin: 5px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .success {
+      color: green;
+    }
+    .error {
+      color: red;
+    }
+    .info {
+      background: #f0f0f0;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 4px;
+      font-family: monospace;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <h1>Authentication Diagnostic Tool</h1>
+  
+  <div class="section">
+    <h2>Step 1: Test Basic Connectivity</h2>
+    <button onclick="testConnectivity()">Test API Connection</button>
+    <div id="connectivityResult"></div>
+  </div>
+
+  <div class="section">
+    <h2>Step 2: Login</h2>
+    <input type="text" id="username" placeholder="Username (admin)">
+    <input type="password" id="password" placeholder="Password (admin123)">
+    <button onclick="login()">Login</button>
+    <div id="loginResult"></div>
+  </div>
+
+  <div class="section">
+    <h2>Step 3: Test Authenticated Endpoint</h2>
+    <button onclick="testAuth()">Test Auth Endpoint</button>
+    <div id="authResult"></div>
+  </div>
+
+  <div class="section">
+    <h2>Step 4: Test Upload Endpoint</h2>
+    <button onclick="testUpload()">Test Upload Endpoint</button>
+    <div id="uploadResult"></div>
+  </div>
+
+  <div class="section">
+    <h2>Debug Info</h2>
+    <div id="debugInfo"></div>
+  </div>
+
+  <script>
+    const API_URL = 'https://psh-committee-site.vercel.app';
+    let authToken = null;
+
+    function updateDebug() {
+      document.getElementById('debugInfo').innerHTML = `
+<div class="info">
+API URL: ${API_URL}
+Token: ${authToken ? authToken.substring(0, 30) + '...' : 'Not set'}
+Timestamp: ${new Date().toISOString()}
+</div>`;
+    }
+
+    async function testConnectivity() {
+      const resultDiv = document.getElementById('connectivityResult');
+      try {
+        resultDiv.innerHTML = '<div>Testing...</div>';
+        
+        // Test OPTIONS request
+        const optionsRes = await fetch(`${API_URL}/api/auth/login`, {
+          method: 'OPTIONS'
+        });
+        
+        // Test GET to login (should fail but with proper error)
+        const getRes = await fetch(`${API_URL}/api/auth/login`, {
+          method: 'GET'
+        });
+        const getData = await getRes.json();
+        
+        resultDiv.innerHTML = `
+<div class="success">✓ API is reachable</div>
+<div class="info">
+OPTIONS Response: ${optionsRes.status} ${optionsRes.statusText}
+GET Response: ${getRes.status} ${getRes.statusText}
+Data: ${JSON.stringify(getData, null, 2)}
+</div>`;
+      } catch (error) {
+        resultDiv.innerHTML = `<div class="error">✗ Connection failed: ${error.message}</div>`;
+      }
+      updateDebug();
+    }
+
+    async function login() {
+      const username = document.getElementById('username').value || 'admin';
+      const password = document.getElementById('password').value || 'admin123';
+      const resultDiv = document.getElementById('loginResult');
+      
+      try {
+        resultDiv.innerHTML = '<div>Logging in...</div>';
+        
+        const response = await fetch(`${API_URL}/api/auth/login`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ username, password })
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok && data.success) {
+          authToken = data.token;
+          resultDiv.innerHTML = `
+<div class="success">✓ Login successful</div>
+<div class="info">
+Response: ${response.status}
+User: ${data.user.username}
+Role: ${data.user.role}
+Token: ${authToken.substring(0, 30)}...
+</div>`;
+        } else {
+          resultDiv.innerHTML = `
+<div class="error">✗ Login failed</div>
+<div class="info">
+Response: ${response.status}
+Message: ${data.message}
+</div>`;
+        }
+      } catch (error) {
+        resultDiv.innerHTML = `<div class="error">✗ Error: ${error.message}</div>`;
+      }
+      updateDebug();
+    }
+
+    async function testAuth() {
+      const resultDiv = document.getElementById('authResult');
+      
+      if (!authToken) {
+        resultDiv.innerHTML = '<div class="error">Please login first</div>';
+        return;
+      }
+      
+      try {
+        resultDiv.innerHTML = '<div>Testing auth...</div>';
+        
+        const response = await fetch(`${API_URL}/api/admin/upload-test`, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${authToken}`
+          }
+        });
+        
+        const text = await response.text();
+        let data;
+        try {
+          data = JSON.parse(text);
+        } catch (e) {
+          data = { parseError: true, rawText: text };
+        }
+        
+        resultDiv.innerHTML = `
+<div class="${response.ok ? 'success' : 'error'}">
+${response.ok ? '✓' : '✗'} Test endpoint response: ${response.status}
+</div>
+<div class="info">
+Headers sent: Authorization: Bearer ${authToken.substring(0, 20)}...
+Response: ${JSON.stringify(data, null, 2)}
+</div>`;
+      } catch (error) {
+        resultDiv.innerHTML = `<div class="error">✗ Error: ${error.message}</div>`;
+      }
+    }
+
+    async function testUpload() {
+      const resultDiv = document.getElementById('uploadResult');
+      
+      if (!authToken) {
+        resultDiv.innerHTML = '<div class="error">Please login first</div>';
+        return;
+      }
+      
+      try {
+        resultDiv.innerHTML = '<div>Testing upload endpoint...</div>';
+        
+        // Create a small test file
+        const blob = new Blob(['Test file content'], { type: 'text/plain' });
+        const formData = new FormData();
+        formData.append('file', blob, 'test.txt');
+        
+        const response = await fetch(`${API_URL}/api/admin/upload`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${authToken}`
+          },
+          body: formData
+        });
+        
+        const text = await response.text();
+        let data;
+        try {
+          data = JSON.parse(text);
+        } catch (e) {
+          data = { parseError: true, rawText: text };
+        }
+        
+        resultDiv.innerHTML = `
+<div class="${response.ok ? 'success' : 'error'}">
+${response.ok ? '✓' : '✗'} Upload endpoint response: ${response.status}
+</div>
+<div class="info">
+Response: ${JSON.stringify(data, null, 2)}
+</div>`;
+      } catch (error) {
+        resultDiv.innerHTML = `<div class="error">✗ Error: ${error.message}</div>`;
+      }
+    }
+
+    // Initial debug info
+    updateDebug();
+  </script>
+</body>
+</html>
