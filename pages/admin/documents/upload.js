@@ -214,11 +214,23 @@ export default function UploadDocuments() {
               <div className="mb-6 p-3 bg-gray-50 rounded">
                 <p className="text-sm font-medium text-gray-700 mb-2">Selected file:</p>
                 <div className="text-sm text-gray-600">
-                  <p className="flex items-center">
-                    <svg className="w-4 h-4 mr-2 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clipRule="evenodd" />
-                    </svg>
-                    {files[0].name} ({formatFileSize(files[0].size)})
+                  <p className="flex items-center justify-between">
+                    <span className="flex items-center">
+                      <svg className="w-4 h-4 mr-2 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clipRule="evenodd" />
+                      </svg>
+                      {files[0].name} ({formatFileSize(files[0].size)})
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const fileURL = URL.createObjectURL(files[0]);
+                        window.open(fileURL, '_blank');
+                      }}
+                      className="text-wa-blue hover:text-wa-green text-sm underline"
+                    >
+                      Preview
+                    </button>
                   </p>
                 </div>
               </div>

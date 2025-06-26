@@ -17,7 +17,7 @@ export default function AdminHeader() {
     { name: 'Blog Posts', href: '/admin/blog' },
     { name: 'Events', href: '/admin/events' },
     { name: 'Submissions', href: '/admin/submissions' },
-    { name: 'Upload Documents', href: '/admin/documents/upload' },
+    { name: 'Documents', href: '/admin/documents' },
   ]
 
   const isActive = (href) => router.pathname === href

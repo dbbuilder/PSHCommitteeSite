@@ -51,17 +51,52 @@ export default function AdminDashboard() {
   }
 
   const fetchStats = async () => {
+    const token = localStorage.getItem('adminToken')
+    
+    if (!token) {
+      setLoading(false)
+      return
+    }
+
     try {
-      // Fetch statistics from various endpoints
-      // For now, using placeholder data
+      // Fetch real statistics from all endpoints
+      const headers = { 'Authorization': `Bearer ${token}` }
+      
+      // Fetch blog posts count
+      const blogResponse = await fetch('/api/admin/blog', { headers })
+      const blogData = await blogResponse.json()
+      const totalPosts = blogData.success && blogData.data ? blogData.data.length : 0
+      
+      // Fetch events count
+      const eventsResponse = await fetch('/api/admin/events', { headers })
+      const eventsData = await eventsResponse.json()
+      const totalEvents = eventsData.success && eventsData.data ? eventsData.data.length : 0
+      
+      // Fetch submissions count
+      const submissionsResponse = await fetch('/api/admin/submissions', { headers })
+      const submissionsData = await submissionsResponse.json()
+      const totalSubmissions = submissionsData.submissions ? submissionsData.submissions.length : 0
+      
+      // Fetch documents count
+      const documentsResponse = await fetch('/api/admin/documents', { headers })
+      const documentsData = await documentsResponse.json()
+      const totalDocuments = documentsData.success && documentsData.data ? documentsData.data.length : 0
+      
       setStats({
-        totalPosts: 12,
-        totalEvents: 8,
-        totalSubmissions: 45,
-        totalDocuments: 7
+        totalPosts,
+        totalEvents,
+        totalSubmissions,
+        totalDocuments
       })
     } catch (error) {
       console.error('Error fetching stats:', error)
+      // Set to 0 on error
+      setStats({
+        totalPosts: 0,
+        totalEvents: 0,
+        totalSubmissions: 0,
+        totalDocuments: 0
+      })
     } finally {
       setLoading(false)
     }

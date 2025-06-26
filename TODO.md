@@ -1,5 +1,29 @@
 # PSH Advisory Committee Website - TODO
 
+## 🔧 FIXED - UI/UX Improvements (June 25, 2025)
+
+### Fixed: Navigation Update
+- **Change**: "Upload Documents" → "Documents" in admin navigation
+- **Link**: Now points to `/admin/documents` (manage) instead of `/admin/documents/upload`
+- **Files**: `/components/AdminHeader.js`
+
+### Added: Document Preview Feature
+- **Feature**: Preview button for selected files before upload
+- **Behavior**: Opens file in new tab for verification
+- **Files**: `/pages/admin/documents/upload.js`
+
+## 🔧 FIXED - Dashboard & UI Issues (June 25, 2025)
+
+### Fixed: Dashboard Real-time Counts
+- **Problem**: Dashboard showing hardcoded placeholder values (12, 8, 45, 7)
+- **Solution**: Updated to fetch real counts from API endpoints
+- **Files**: `/pages/admin/dashboard.js`
+
+### Fixed: Blob Storage Warning
+- **Problem**: Warning showing even when blob storage was configured
+- **Solution**: Removed incorrect client-side environment variable check
+- **Files**: `/pages/admin/documents.js`
+
 ## 🔧 FIXED - Document Upload Error (June 25, 2025)
 
 ### Issue: 500 Internal Server Error on Document Upload
