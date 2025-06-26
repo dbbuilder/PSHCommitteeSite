@@ -22,7 +22,9 @@ function generateUniqueFilename(originalName) {
 }
 
 export default async function handler(req, res) {
-  // Set CORS headers
+  console.log('Upload handler called:', req.method);
+  
+  // Set CORS headers immediately
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
@@ -33,16 +35,26 @@ export default async function handler(req, res) {
     return;
   }
 
+  // Only allow POST
+  if (req.method !== 'POST') {
+    return res.status(405).json({ 
+      success: false, 
+      message: 'Method not allowed' 
+    });
+  }
+
   try {
     // Verify admin authentication
     const authResult = await verifyToken(req);
     if (!authResult.success) {
-      return res.status(401).json({ success: false, message: 'Unauthorized' });
+      console.log('Authentication failed');
+      return res.status(401).json({ 
+        success: false, 
+        message: 'Unauthorized' 
+      });
     }
 
-    if (req.method !== 'POST') {
-      return res.status(405).json({ success: false, message: 'Method not allowed' });
-    }
+    console.log('Authentication successful');
 
     // Check if blob storage is configured
     const hasBlobStorage = !!process.env.BLOB_READ_WRITE_TOKEN;
@@ -61,29 +73,37 @@ export default async function handler(req, res) {
       });
     }
 
-    // Parse the form
+    console.log('Parsing form...');
+    
+    // Parse the form with more explicit error handling
     const form = formidable({
       maxFileSize: 10 * 1024 * 1024, // 10MB limit
+      keepExtensions: true,
     });
 
     let fields, files;
     try {
-      [fields, files] = await new Promise((resolve, reject) => {
+      const parsed = await new Promise((resolve, reject) => {
         form.parse(req, (err, fields, files) => {
           if (err) {
             console.error('Form parse error:', err);
             reject(err);
-          } else {
-            resolve([fields, files]);
+            return;
           }
+          console.log('Form parsed successfully');
+          console.log('Fields:', Object.keys(fields));
+          console.log('Files:', Object.keys(files));
+          resolve({ fields, files });
         });
       });
+      
+      fields = parsed.fields;
+      files = parsed.files;
     } catch (parseError) {
       console.error('Failed to parse form:', parseError);
       return res.status(400).json({ 
         success: false, 
-        message: 'Failed to parse upload form',
-        error: parseError.message 
+        message: 'Failed to parse upload form: ' + parseError.message
       });
     }
 
@@ -91,11 +111,19 @@ export default async function handler(req, res) {
     const file = Array.isArray(files.file) ? files.file[0] : files.file;
     
     if (!file) {
+      console.error('No file in upload');
       return res.status(400).json({ 
         success: false, 
         message: 'No file uploaded' 
       });
     }
+
+    console.log('File received:', {
+      originalFilename: file.originalFilename,
+      mimetype: file.mimetype,
+      size: file.size,
+      filepath: file.filepath
+    });
 
     // Validate file type
     const allowedTypes = [
@@ -111,6 +139,7 @@ export default async function handler(req, res) {
     ];
 
     if (!allowedTypes.includes(file.mimetype)) {
+      console.error('Invalid file type:', file.mimetype);
       return res.status(400).json({ 
         success: false, 
         message: 'Invalid file type. Allowed types: PDF, Word, Excel, PowerPoint, Text, RTF' 
@@ -119,33 +148,36 @@ export default async function handler(req, res) {
 
     // Generate unique filename
     const uniqueFilename = generateUniqueFilename(file.originalFilename || 'document');
+    console.log('Generated filename:', uniqueFilename);
     
-    // Read file buffer
+    // Read file as buffer
     let fileBuffer;
     try {
       fileBuffer = fs.readFileSync(file.filepath);
+      console.log('File read successfully, size:', fileBuffer.length);
     } catch (readError) {
       console.error('Failed to read file:', readError);
       return res.status(500).json({
         success: false,
-        message: 'Failed to read uploaded file',
-        error: readError.message
+        message: 'Failed to read uploaded file: ' + readError.message
       });
     }
     
+    // Upload to blob storage
     try {
-      // Upload to Vercel Blob using the existing uploadFileToBlob function
-      console.log('Uploading file to blob storage:', uniqueFilename);
+      console.log('Uploading to blob storage...');
       const uploadResult = await uploadFileToBlob(fileBuffer, uniqueFilename, file.mimetype);
+      console.log('Upload successful:', uploadResult);
       
       // Clean up temp file
       try {
         fs.unlinkSync(file.filepath);
+        console.log('Temp file cleaned up');
       } catch (e) {
         console.warn('Failed to clean up temp file:', e.message);
       }
       
-      // Return success with file info
+      // Return success response
       const response = {
         success: true,
         message: 'File uploaded successfully',
@@ -156,7 +188,7 @@ export default async function handler(req, res) {
         blobUrl: uploadResult.url
       };
       
-      console.log('Upload successful:', response);
+      console.log('Sending success response:', response);
       return res.status(200).json(response);
       
     } catch (uploadError) {
@@ -168,24 +200,22 @@ export default async function handler(req, res) {
       }
       
       console.error('Blob upload error:', uploadError);
+      console.error('Stack trace:', uploadError.stack);
       
-      // Return error response
       return res.status(500).json({
         success: false,
-        message: 'Failed to upload file to blob storage',
-        error: uploadError.message,
-        details: process.env.NODE_ENV === 'development' ? uploadError.stack : undefined
+        message: 'Failed to upload file to blob storage: ' + uploadError.message
       });
     }
 
   } catch (error) {
     console.error('Upload handler error:', error);
+    console.error('Stack trace:', error.stack);
     
     // Always return a valid JSON response
     return res.status(500).json({
       success: false,
-      message: error.message || 'Failed to upload file',
-      error: process.env.NODE_ENV === 'development' ? error.stack : undefined
+      message: 'Server error: ' + (error.message || 'Failed to process upload')
     });
   }
 }

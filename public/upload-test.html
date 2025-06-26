@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .container {
+      border: 1px solid #ddd;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .error {
+      color: red;
+      margin-top: 10px;
+    }
+    .success {
+      color: green;
+      margin-top: 10px;
+    }
+    .response {
+      background-color: #f5f5f5;
+      padding: 10px;
+      border-radius: 4px;
+      margin-top: 10px;
+      white-space: pre-wrap;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Document Upload Test</h1>
+    
+    <div>
+      <h2>Step 1: Get Auth Token</h2>
+      <input type="password" id="password" placeholder="Admin password" value="PSH@dm1n!">
+      <button onclick="getToken()">Get Token</button>
+      <div id="tokenResult"></div>
+    </div>
+    
+    <div style="margin-top: 30px;">
+      <h2>Step 2: Test Upload Endpoint</h2>
+      <button onclick="testEndpoint()">Test Endpoint</button>
+      <div id="testResult"></div>
+    </div>
+    
+    <div style="margin-top: 30px;">
+      <h2>Step 3: Upload File</h2>
+      <input type="file" id="fileInput" accept=".pdf,.doc,.docx">
+      <button onclick="uploadFile()">Upload</button>
+      <div id="uploadResult"></div>
+    </div>
+  </div>
+
+  <script>
+    let authToken = null;
+    const apiUrl = window.location.origin;
+    
+    async function getToken() {
+      const password = document.getElementById('password').value;
+      const resultDiv = document.getElementById('tokenResult');
+      
+      try {
+        const response = await fetch(`${apiUrl}/api/auth/login`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ password }),
+        });
+        
+        const text = await response.text();
+        console.log('Raw response:', text);
+        
+        let result;
+        try {
+          result = JSON.parse(text);
+        } catch (e) {
+          resultDiv.innerHTML = `<div class="error">Failed to parse response: ${text}</div>`;
+          return;
+        }
+        
+        if (response.ok && result.success) {
+          authToken = result.token;
+          resultDiv.innerHTML = `<div class="success">✓ Token obtained successfully</div>`;
+        } else {
+          resultDiv.innerHTML = `<div class="error">Failed: ${result.message || 'Unknown error'}</div>`;
+        }
+      } catch (error) {
+        resultDiv.innerHTML = `<div class="error">Error: ${error.message}</div>`;
+      }
+    }
+    
+    async function testEndpoint() {
+      const resultDiv = document.getElementById('testResult');
+      
+      if (!authToken) {
+        resultDiv.innerHTML = `<div class="error">Please get auth token first</div>`;
+        return;
+      }
+      
+      try {
+        const response = await fetch(`${apiUrl}/api/admin/upload-test`, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${authToken}`,
+          },
+        });
+        
+        const text = await response.text();
+        console.log('Test response:', text);
+        
+        let result;
+        try {
+          result = JSON.parse(text);
+        } catch (e) {
+          resultDiv.innerHTML = `<div class="error">Failed to parse response: ${text}</div>`;
+          return;
+        }
+        
+        if (response.ok) {
+          resultDiv.innerHTML = `<div class="success">✓ Endpoint is working</div><div class="response">${JSON.stringify(result, null, 2)}</div>`;
+        } else {
+          resultDiv.innerHTML = `<div class="error">Failed: ${JSON.stringify(result, null, 2)}</div>`;
+        }
+      } catch (error) {
+        resultDiv.innerHTML = `<div class="error">Error: ${error.message}</div>`;
+      }
+    }
+    
+    async function uploadFile() {
+      const resultDiv = document.getElementById('uploadResult');
+      const fileInput = document.getElementById('fileInput');
+      
+      if (!authToken) {
+        resultDiv.innerHTML = `<div class="error">Please get auth token first</div>`;
+        return;
+      }
+      
+      if (!fileInput.files[0]) {
+        resultDiv.innerHTML = `<div class="error">Please select a file</div>`;
+        return;
+      }
+      
+      const formData = new FormData();
+      formData.append('file', fileInput.files[0]);
+      
+      try {
+        console.log('Uploading file...');
+        const response = await fetch(`${apiUrl}/api/admin/upload`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${authToken}`,
+          },
+          body: formData,
+        });
+        
+        console.log('Response status:', response.status);
+        console.log('Response headers:', response.headers);
+        
+        const text = await response.text();
+        console.log('Raw response:', text);
+        
+        let result;
+        try {
+          result = JSON.parse(text);
+        } catch (e) {
+          resultDiv.innerHTML = `<div class="error">Failed to parse response:<br>${text}</div>`;
+          return;
+        }
+        
+        if (response.ok && result.success) {
+          resultDiv.innerHTML = `<div class="success">✓ Upload successful!</div><div class="response">${JSON.stringify(result, null, 2)}</div>`;
+        } else {
+          resultDiv.innerHTML = `<div class="error">Upload failed:</div><div class="response">${JSON.stringify(result, null, 2)}</div>`;
+        }
+      } catch (error) {
+        console.error('Upload error:', error);
+        resultDiv.innerHTML = `<div class="error">Error: ${error.message}</div>`;
+      }
+    }
+  </script>
+</body>
+</html>
