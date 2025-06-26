@@ -51,6 +51,7 @@
     
     <div>
       <h2>Step 1: Get Auth Token</h2>
+      <input type="text" id="username" placeholder="Username" value="admin" style="margin-right: 10px;">
       <input type="password" id="password" placeholder="Admin password" value="PSH@dm1n!">
       <button onclick="getToken()">Get Token</button>
       <div id="tokenResult"></div>
@@ -75,6 +76,7 @@
     const apiUrl = window.location.origin;
     
     async function getToken() {
+      const username = document.getElementById('username').value;
       const password = document.getElementById('password').value;
       const resultDiv = document.getElementById('tokenResult');
       
@@ -84,7 +86,7 @@
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ password }),
+          body: JSON.stringify({ username, password }),
         });
         
         const text = await response.text();

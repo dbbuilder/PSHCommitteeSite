@@ -8,6 +8,7 @@ const fetch = require('node-fetch');
 
 // Configuration
 const API_URL = process.env.API_URL || 'http://localhost:12500';
+const ADMIN_USERNAME = process.env.ADMIN_USERNAME || 'admin';
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'PSH@dm1n!';
 
 async function getAuthToken() {
@@ -18,7 +19,10 @@ async function getAuthToken() {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ password: ADMIN_PASSWORD }),
+    body: JSON.stringify({ 
+      username: ADMIN_USERNAME,
+      password: ADMIN_PASSWORD 
+    }),
   });
   
   const result = await response.json();
