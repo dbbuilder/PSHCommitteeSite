@@ -22,6 +22,17 @@ function generateUniqueFilename(originalName) {
 }
 
 export default async function handler(req, res) {
+  // Set CORS headers
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  
+  // Handle OPTIONS request for CORS preflight
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
+  }
+
   try {
     // Verify admin authentication
     const authResult = await verifyToken(req);
@@ -37,6 +48,7 @@ export default async function handler(req, res) {
     const hasBlobStorage = !!process.env.BLOB_READ_WRITE_TOKEN;
     
     if (!hasBlobStorage) {
+      console.warn('Blob storage not configured - returning demo response');
       return res.status(200).json({ 
         success: true, 
         message: 'File processed (Blob storage not configured - file not persisted)',
@@ -49,20 +61,31 @@ export default async function handler(req, res) {
       });
     }
 
+    // Parse the form
     const form = formidable({
       maxFileSize: 10 * 1024 * 1024, // 10MB limit
     });
 
-    const [fields, files] = await new Promise((resolve, reject) => {
-      form.parse(req, (err, fields, files) => {
-        if (err) {
-          console.error('Form parse error:', err);
-          reject(err);
-        } else {
-          resolve([fields, files]);
-        }
+    let fields, files;
+    try {
+      [fields, files] = await new Promise((resolve, reject) => {
+        form.parse(req, (err, fields, files) => {
+          if (err) {
+            console.error('Form parse error:', err);
+            reject(err);
+          } else {
+            resolve([fields, files]);
+          }
+        });
       });
-    });
+    } catch (parseError) {
+      console.error('Failed to parse form:', parseError);
+      return res.status(400).json({ 
+        success: false, 
+        message: 'Failed to parse upload form',
+        error: parseError.message 
+      });
+    }
 
     // Get the uploaded file
     const file = Array.isArray(files.file) ? files.file[0] : files.file;
@@ -98,36 +121,67 @@ export default async function handler(req, res) {
     const uniqueFilename = generateUniqueFilename(file.originalFilename || 'document');
     
     // Read file buffer
-    const fileBuffer = fs.readFileSync(file.filepath);
-    
-    // Upload to Vercel Blob using buffer directly
-    const { put } = await import('@vercel/blob');
-    const blob = await put(`documents/files/${uniqueFilename}`, fileBuffer, {
-      access: 'public',
-      contentType: file.mimetype,
-    });
-    
-    // Clean up temp file
+    let fileBuffer;
     try {
-      fs.unlinkSync(file.filepath);
-    } catch (e) {
-      // Ignore cleanup errors
+      fileBuffer = fs.readFileSync(file.filepath);
+    } catch (readError) {
+      console.error('Failed to read file:', readError);
+      return res.status(500).json({
+        success: false,
+        message: 'Failed to read uploaded file',
+        error: readError.message
+      });
     }
     
-    // Return success with file info
-    return res.status(200).json({
-      success: true,
-      message: 'File uploaded successfully',
-      filename: uniqueFilename,
-      originalName: file.originalFilename,
-      size: file.size,
-      mimetype: file.mimetype,
-      blobUrl: blob.url
-    });
+    try {
+      // Upload to Vercel Blob using the existing uploadFileToBlob function
+      console.log('Uploading file to blob storage:', uniqueFilename);
+      const uploadResult = await uploadFileToBlob(fileBuffer, uniqueFilename, file.mimetype);
+      
+      // Clean up temp file
+      try {
+        fs.unlinkSync(file.filepath);
+      } catch (e) {
+        console.warn('Failed to clean up temp file:', e.message);
+      }
+      
+      // Return success with file info
+      const response = {
+        success: true,
+        message: 'File uploaded successfully',
+        filename: uploadResult.filename,
+        originalName: file.originalFilename,
+        size: file.size,
+        mimetype: file.mimetype,
+        blobUrl: uploadResult.url
+      };
+      
+      console.log('Upload successful:', response);
+      return res.status(200).json(response);
+      
+    } catch (uploadError) {
+      // Clean up temp file even if upload fails
+      try {
+        fs.unlinkSync(file.filepath);
+      } catch (e) {
+        console.warn('Failed to clean up temp file:', e.message);
+      }
+      
+      console.error('Blob upload error:', uploadError);
+      
+      // Return error response
+      return res.status(500).json({
+        success: false,
+        message: 'Failed to upload file to blob storage',
+        error: uploadError.message,
+        details: process.env.NODE_ENV === 'development' ? uploadError.stack : undefined
+      });
+    }
 
   } catch (error) {
-    console.error('Upload error:', error);
+    console.error('Upload handler error:', error);
     
+    // Always return a valid JSON response
     return res.status(500).json({
       success: false,
       message: error.message || 'Failed to upload file',

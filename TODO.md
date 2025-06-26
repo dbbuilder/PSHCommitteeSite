@@ -1,5 +1,18 @@
 # PSH Advisory Committee Website - TODO
 
+## 🔧 FIXED - Document Upload Error (June 25, 2025)
+
+### Issue: 500 Internal Server Error on Document Upload
+- **Problem**: Upload endpoint returned 500 error with "Cannot read properties of null (reading 'success')"
+- **Root Cause**: Dynamic import of '@vercel/blob' was failing in production
+- **Solution**: 
+  - Updated `/pages/api/admin/upload.js` to use existing `uploadFileToBlob` function
+  - Added comprehensive error handling and CORS headers
+  - Ensured all responses return valid JSON
+  - Added detailed logging for debugging
+- **Test Script**: Created `/scripts/test-upload.js` to verify functionality
+- **Documentation**: Created `UPLOAD_FIX.md` with detailed fix information
+
 ## ✅ COMPLETED - Vercel Blob Storage Migration (June 25, 2025)
 
 ### Problem Solved: Data Persistence Across Deployments
