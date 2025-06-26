@@ -1,4 +1,4 @@
-import { verifyToken } from '../../../lib/auth';
+import { verifyAdminAuth } from '../../../lib/auth';
 import { 
   getAllDocuments, 
   getDocumentById, 
@@ -11,7 +11,7 @@ import {
 export default async function handler(req, res) {
   try {
     // Verify admin authentication for all methods
-    const authResult = await verifyToken(req);
+    const authResult = verifyAdminAuth(req);
     if (!authResult.success) {
       return res.status(401).json({ success: false, message: 'Unauthorized' });
     }

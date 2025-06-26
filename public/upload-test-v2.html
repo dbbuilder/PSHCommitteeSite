@@ -111,7 +111,8 @@
 
   <script>
     let authToken = null;
-    const apiUrl = window.location.origin;
+    // Always use the deployed API URL
+    const apiUrl = 'https://psh-committee-site.vercel.app';
     
     function showDebugInfo() {
       const debugDiv = document.getElementById('debugInfo');

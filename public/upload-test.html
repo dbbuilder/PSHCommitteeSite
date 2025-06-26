@@ -73,7 +73,8 @@
 
   <script>
     let authToken = null;
-    const apiUrl = window.location.origin;
+    // Always use the deployed API URL
+    const apiUrl = 'https://psh-committee-site.vercel.app';
     
     async function getToken() {
       const username = document.getElementById('username').value;

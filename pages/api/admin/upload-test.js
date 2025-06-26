@@ -1,5 +1,5 @@
 // Test endpoint to verify basic functionality
-import { verifyToken } from '../../../lib/auth';
+import { verifyAdminAuth } from '../../../lib/auth';
 
 export default async function handler(req, res) {
   // Set CORS headers
@@ -15,7 +15,7 @@ export default async function handler(req, res) {
 
   try {
     // Verify admin authentication
-    const authResult = await verifyToken(req);
+    const authResult = verifyAdminAuth(req);
     if (!authResult.success) {
       return res.status(401).json({ 
         success: false, 

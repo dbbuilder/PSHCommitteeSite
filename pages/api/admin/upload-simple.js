@@ -1,5 +1,5 @@
 // Simple upload endpoint without formidable for testing
-import { verifyToken } from '../../../lib/auth';
+import { verifyAdminAuth } from '../../../lib/auth';
 
 export const config = {
   api: {
@@ -23,7 +23,7 @@ export default async function handler(req, res) {
 
   try {
     // Verify admin authentication
-    const authResult = await verifyToken(req);
+    const authResult = verifyAdminAuth(req);
     if (!authResult.success) {
       return res.status(401).json({ 
         success: false, 

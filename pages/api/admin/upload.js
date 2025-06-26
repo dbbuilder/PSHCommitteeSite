@@ -1,5 +1,5 @@
 import formidable from 'formidable';
-import { verifyToken } from '../../../lib/auth';
+import { verifyAdminAuth } from '../../../lib/auth';
 import { uploadFileToBlob } from '../../../lib/blobStorage';
 import fs from 'fs';
 
@@ -45,7 +45,7 @@ export default async function handler(req, res) {
 
   try {
     // Verify admin authentication
-    const authResult = await verifyToken(req);
+    const authResult = verifyAdminAuth(req);
     if (!authResult.success) {
       console.log('Authentication failed');
       return res.status(401).json({ 
