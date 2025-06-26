@@ -80,7 +80,7 @@ export default function AdminDashboard() {
       // Fetch documents count
       const documentsResponse = await fetch('/api/admin/documents', { headers })
       const documentsData = await documentsResponse.json()
-      const totalDocuments = documentsData.success && documentsData.data ? documentsData.data.length : 0
+      const totalDocuments = documentsData.success && documentsData.documents ? documentsData.documents.length : 0
       
       setStats({
         totalPosts,
